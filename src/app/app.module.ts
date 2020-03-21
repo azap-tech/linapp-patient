@@ -16,6 +16,7 @@ import {
   MatSidenavModule,
   MatListModule,
 } from '@angular/material';
+import { RouterModule, Routes } from '@angular/router';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -27,8 +28,19 @@ import { SmsConfirmationComponent } from './pages/sms-confirmation/sms-confirmat
 import { TimeTrackerComponent } from './pages/time-tracker/time-tracker.component';
 import { NavbarComponent } from './components/navbar/navbar.component';
 import { ValidationButtonComponent } from './components/validation-button/validation-button.component';
+import { PageNotFoundComponent } from './components/page-not-found/page-not-found.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ReactiveFormsModule } from '@angular/forms';
+
+const appRoutes: Routes = [
+  { path: 'home', component: DepartmentComponent },
+  { path: 'centers-list', component: CentersListComponent },
+  { path: 'sms-confirmation', component: SmsConfirmationComponent },
+  { path: 'time-tracker', component: TimeTrackerComponent },
+  { path: 'page-not-found', component: PageNotFoundComponent },
+  { path: '', redirectTo: '/home', pathMatch: 'full' },
+  { path: '**', redirectTo: '/page-not-found' },
+];
 
 @NgModule({
   declarations: [
@@ -41,6 +53,7 @@ import { ReactiveFormsModule } from '@angular/forms';
     TimeTrackerComponent,
     NavbarComponent,
     ValidationButtonComponent,
+    PageNotFoundComponent,
   ],
   imports: [
     BrowserModule,
@@ -61,6 +74,7 @@ import { ReactiveFormsModule } from '@angular/forms';
     MatSidenavModule,
     MatListModule,
     ReactiveFormsModule,
+    RouterModule.forRoot(appRoutes)
   ],
   providers: [],
   bootstrap: [AppComponent],
