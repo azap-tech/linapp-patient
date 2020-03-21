@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 
 enum Sex {
   Male,
-  Female
+  Female,
 }
 
 interface UserData {
@@ -15,17 +15,17 @@ interface UserData {
 }
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class StoreService {
   state: UserData;
 
-  getState() {
+  getState(): UserData {
     return this.state;
   }
 
-  setState() {
-    return this.state;
+  setState(state: UserData) {
+    this.state = state;
   }
 
   clear() {
