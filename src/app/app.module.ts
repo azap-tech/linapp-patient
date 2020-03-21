@@ -8,6 +8,7 @@ import { CentersListComponent } from './pages/centers-list/centers-list.componen
 import { TicketComponent } from './pages/ticket/ticket.component';
 import { MedicalReasonComponent } from './pages/medical-reason/medical-reason.component';
 import { SmsConfirmationComponent } from './pages/sms-confirmation/sms-confirmation.component';
+import { TimeTrackerComponent } from './pages/time-tracker/time-tracker.component';
 
 @NgModule({
   declarations: [
@@ -16,7 +17,8 @@ import { SmsConfirmationComponent } from './pages/sms-confirmation/sms-confirmat
     CentersListComponent,
     TicketComponent,
     MedicalReasonComponent,
-    SmsConfirmationComponent
+    SmsConfirmationComponent,
+    TimeTrackerComponent
   ],
   imports: [
     BrowserModule,
