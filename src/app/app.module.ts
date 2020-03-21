@@ -28,7 +28,7 @@ import { SmsConfirmationComponent } from './pages/sms-confirmation/sms-confirmat
 import { TimeTrackerComponent } from './pages/time-tracker/time-tracker.component';
 import { NavbarComponent } from './components/navbar/navbar.component';
 import { ValidationButtonComponent } from './components/validation-button/validation-button.component';
-import { PageNotFoundComponent } from './components/page-not-found/page-not-found.component';
+import { PageNotFoundComponent } from './pages/page-not-found/page-not-found.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ReactiveFormsModule } from '@angular/forms';
 
