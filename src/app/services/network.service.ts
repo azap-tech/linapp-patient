@@ -7,7 +7,7 @@ import { Observable } from 'rxjs';
 })
 export class NetworkService {
   constructor(private mockService: MockService) {}
-  getDepartments(): Observable<string[]> {
+  getDepartments(): Observable<Department[]> {
     return this.mockService.getDepartments();
   }
 

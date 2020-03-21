@@ -5,8 +5,13 @@ import { Observable, of } from 'rxjs';
   providedIn: 'root',
 })
 export class MockService {
-  getDepartments(): Observable<string[]> {
-    return of(['75', '76', '77', '2B']);
+  getDepartments(): Observable<Department[]> {
+    return of([
+      { id: '75', name: 'Paris' },
+      { id: '76', name: 'Seine-Maritime' },
+      { id: '77', name: 'Seine-et-Marne' },
+      { id: '2B', name: 'Haute-Corse' },
+    ]);
   }
 
   getCenters(): Observable<Center[]> {

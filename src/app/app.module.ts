@@ -28,6 +28,7 @@ import { TimeTrackerComponent } from './pages/time-tracker/time-tracker.componen
 import { NavbarComponent } from './components/navbar/navbar.component';
 import { ValidationButtonComponent } from './components/validation-button/validation-button.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { ReactiveFormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -59,6 +60,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
     MatIconModule,
     MatSidenavModule,
     MatListModule,
+    ReactiveFormsModule,
   ],
   providers: [],
   bootstrap: [AppComponent],

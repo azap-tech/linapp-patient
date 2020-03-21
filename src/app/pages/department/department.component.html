@@ -1,1 +1,26 @@
-<p>department works!</p>
+<div>
+  <img src="assets/document.svg" />
+  <img src="assets/doctor.svg" />
+</div>
+
+<p>
+  Bonjour, bienvenue sur l’interface de prise de ticket pour une consultation
+  médicale
+</p>
+
+<div>
+  <p>Veuillez séléctionner votre département</p>
+
+  <form [formGroup]="departmentForm" (ngSubmit)="onSubmit()">
+    <select name="department" formControlName="department">
+      <option
+        *ngFor="let department of departments | async"
+        value="{{ department.name }}"
+        selected
+        >{{ department.name }}</option
+      >
+    </select>
+
+    <app-validation-button [text]="'Validate'"> </app-validation-button>
+  </form>
+</div>
