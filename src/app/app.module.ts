@@ -7,6 +7,7 @@ import { DepartmentComponent } from './pages/department/department.component';
 import { CentersListComponent } from './pages/centers-list/centers-list.component';
 import { TicketComponent } from './pages/ticket/ticket.component';
 import { MedicalReasonComponent } from './pages/medical-reason/medical-reason.component';
+import { SmsConfirmationComponent } from './pages/sms-confirmation/sms-confirmation.component';
 
 @NgModule({
   declarations: [
@@ -14,7 +15,8 @@ import { MedicalReasonComponent } from './pages/medical-reason/medical-reason.co
     DepartmentComponent,
     CentersListComponent,
     TicketComponent,
-    MedicalReasonComponent
+    MedicalReasonComponent,
+    SmsConfirmationComponent
   ],
   imports: [
     BrowserModule,
