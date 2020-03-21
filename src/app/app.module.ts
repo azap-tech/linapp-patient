@@ -30,6 +30,7 @@ import { NavbarComponent } from './components/navbar/navbar.component';
 import { ValidationButtonComponent } from './components/validation-button/validation-button.component';
 import { PageNotFoundComponent } from './components/page-not-found/page-not-found.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { ReactiveFormsModule } from '@angular/forms';
 
 const appRoutes: Routes = [
   { path: 'home', component: DepartmentComponent },
@@ -72,7 +73,8 @@ const appRoutes: Routes = [
     MatIconModule,
     MatSidenavModule,
     MatListModule,
-    RouterModule.forRoot(appRoutes),
+    ReactiveFormsModule,
+    RouterModule.forRoot(appRoutes)
   ],
   providers: [],
   bootstrap: [AppComponent],
