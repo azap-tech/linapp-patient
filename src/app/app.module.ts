@@ -10,6 +10,7 @@ import { MedicalReasonComponent } from './pages/medical-reason/medical-reason.co
 import { SmsConfirmationComponent } from './pages/sms-confirmation/sms-confirmation.component';
 import { TimeTrackerComponent } from './pages/time-tracker/time-tracker.component';
 import { NavbarComponent } from './components/navbar/navbar.component';
+import { ValidationButtonComponent } from './components/validation-button/validation-button.component';
 
 @NgModule({
   declarations: [
@@ -20,7 +21,8 @@ import { NavbarComponent } from './components/navbar/navbar.component';
     MedicalReasonComponent,
     SmsConfirmationComponent,
     TimeTrackerComponent,
-    NavbarComponent
+    NavbarComponent,
+    ValidationButtonComponent
   ],
   imports: [
     BrowserModule,
