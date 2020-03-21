@@ -3,6 +3,7 @@
 ## Deploy
 
 Project master branch will be deploy on [netlify](https://inspiring-mestorf-dcea88.netlify.com/)
+[![Netlify Status](https://api.netlify.com/api/v1/badges/d05b8c3b-adf4-4018-9880-7784ecd569fa/deploy-status)](https://app.netlify.com/sites/inspiring-mestorf-dcea88/deploys)
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 8.3.18.
 
