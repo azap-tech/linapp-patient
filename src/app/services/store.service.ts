@@ -11,6 +11,7 @@ interface UserData {
   reason: string;
   tel: string;
   age: number;
+  minsToWaitForVisit: number;
   department: Department;
   center: Center;
   medicalCenters: Center[];
@@ -36,6 +37,7 @@ export class StoreService {
           center: null,
           medicalCenters: null,
           ticketNumber: null,
+          minsToWaitForVisit: null,
         };
   }
 

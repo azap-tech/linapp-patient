@@ -15,6 +15,7 @@ import {
   MatIconModule,
   MatSidenavModule,
   MatListModule,
+  MatGridListModule,
 } from '@angular/material';
 import { RouterModule, Routes } from '@angular/router';
 
@@ -31,6 +32,8 @@ import { ValidationButtonComponent } from './components/validation-button/valida
 import { PageNotFoundComponent } from './pages/page-not-found/page-not-found.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ReactiveFormsModule } from '@angular/forms';
+import { TrackerHeaderComponent } from './pages/time-tracker/tracker-header/tracker-header.component';
+import { TrackerCountdownComponent } from './pages/time-tracker/tracker-countdown/tracker-countdown.component';
 import { CentersListItemComponent } from './pages/centers-list/centers-list-item/centers-list-item.component';
 
 @NgModule({
@@ -45,6 +48,8 @@ import { CentersListItemComponent } from './pages/centers-list/centers-list-item
     NavbarComponent,
     ValidationButtonComponent,
     PageNotFoundComponent,
+    TrackerHeaderComponent,
+    TrackerCountdownComponent,
     CentersListItemComponent,
   ],
   imports: [
@@ -65,6 +70,7 @@ import { CentersListItemComponent } from './pages/centers-list/centers-list-item
     MatIconModule,
     MatSidenavModule,
     MatListModule,
+    MatGridListModule,
     ReactiveFormsModule,
   ],
   providers: [],
