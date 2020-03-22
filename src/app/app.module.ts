@@ -32,16 +32,6 @@ import { PageNotFoundComponent } from './pages/page-not-found/page-not-found.com
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ReactiveFormsModule } from '@angular/forms';
 
-const appRoutes: Routes = [
-  { path: 'home', component: DepartmentComponent },
-  { path: 'centers-list', component: CentersListComponent },
-  { path: 'sms-confirmation', component: SmsConfirmationComponent },
-  { path: 'time-tracker', component: TimeTrackerComponent },
-  { path: 'page-not-found', component: PageNotFoundComponent },
-  { path: '', redirectTo: '/home', pathMatch: 'full' },
-  { path: '**', redirectTo: '/page-not-found' },
-];
-
 @NgModule({
   declarations: [
     AppComponent,
@@ -74,7 +64,6 @@ const appRoutes: Routes = [
     MatSidenavModule,
     MatListModule,
     ReactiveFormsModule,
-    RouterModule.forRoot(appRoutes)
   ],
   providers: [],
   bootstrap: [AppComponent],
