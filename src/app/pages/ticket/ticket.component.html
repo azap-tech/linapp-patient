@@ -1,2 +1,55 @@
-<app-ticket-header [ticketNumber]="ticket.ticketNumber"></app-ticket-header>
-<app-ticket-form (ticketCreated)="onTicketCreated($event)"></app-ticket-form>
+<mat-card>
+  <mat-card-header>
+    <mat-card-title>
+      Prendre un tiket dans le Centre 1
+    </mat-card-title>
+    <mat-card-subtitle>
+      Ticket number:
+      <span *ngIf="ticket.ticketNumber; else noTicketAssinged"
+        ># {{ ticket.ticketNumber }}</span
+      >
+      <ng-template #noTicketAssinged>not assigned</ng-template>
+    </mat-card-subtitle>
+  </mat-card-header>
+</mat-card>
+<form [formGroup]="ticketForm" (ngSubmit)="onSubmit()">
+  <p>
+    <label>Sexe: </label>
+    <mat-radio-group formControlName="sex" class="sex-radio-group">
+      <mat-radio-button class="sex-radio-group" [value]="'male'"
+        >Homme</mat-radio-button
+      >
+      <mat-radio-button class="sex-radio-group" [value]="'female'"
+        >Femme</mat-radio-button
+      >
+    </mat-radio-group>
+  </p>
+  <p>
+    <mat-form-field appearance="fill">
+      <mat-label>Nom</mat-label>
+      <input formControlName="name" type="text" matInput />
+    </mat-form-field>
+  </p>
+  <p>
+    <mat-form-field appearance="fill">
+      <mat-label>Motif</mat-label>
+      <input formControlName="reason" type="text" matInput />
+    </mat-form-field>
+  </p>
+  <p>
+    <mat-form-field appearance="fill">
+      <mat-label>Tel</mat-label>
+      <input formControlName="tel" type="text" matInput />
+    </mat-form-field>
+  </p>
+  <p>
+    <mat-form-field appearance="fill">
+      <mat-label>Age</mat-label>
+      <input formControlName="age" type="number" matInput />
+    </mat-form-field>
+  </p>
+  <app-validation-button
+    [text]="'Valider'"
+    [disabled]="!ticketForm.valid"
+  ></app-validation-button>
+</form>

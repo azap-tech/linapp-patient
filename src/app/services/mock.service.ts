@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Observable, of } from 'rxjs';
+import { ITicket } from '../pages/ticket/i-ticket';
 
 @Injectable({
   providedIn: 'root',
@@ -41,5 +42,9 @@ export class MockService {
 
   chooseDepartment(): Observable<Center[]> {
     return this.getCenters();
+  }
+
+  getTicketNumber(ticket: ITicket): Observable<number> {
+    return of(Math.floor(Math.random() * 100));
   }
 }
