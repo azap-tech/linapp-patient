@@ -34,6 +34,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ReactiveFormsModule } from '@angular/forms';
 import { TrackerHeaderComponent } from './pages/time-tracker/tracker-header/tracker-header.component';
 import { TrackerCountdownComponent } from './pages/time-tracker/tracker-countdown/tracker-countdown.component';
+import { CentersListItemComponent } from './pages/centers-list/centers-list-item/centers-list-item.component';
 
 @NgModule({
   declarations: [
@@ -49,6 +50,7 @@ import { TrackerCountdownComponent } from './pages/time-tracker/tracker-countdow
     PageNotFoundComponent,
     TrackerHeaderComponent,
     TrackerCountdownComponent,
+    CentersListItemComponent,
   ],
   imports: [
     BrowserModule,

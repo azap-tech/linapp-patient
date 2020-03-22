@@ -34,4 +34,12 @@ export class MockService {
   getMinsWaitingTime(): Observable<number> {
     return of(88);
   }
+
+  chooseCenter(): Observable<string> {
+    return of('#20');
+  }
+
+  chooseDepartment(): Observable<Center[]> {
+    return this.getCenters();
+  }
 }

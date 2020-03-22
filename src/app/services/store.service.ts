@@ -11,9 +11,10 @@ interface UserData {
   reason: string;
   tel: string;
   age: number;
-  department: string;
-  center: Center;
   minsToWaitForVisit: number;
+  department: Department;
+  center: Center;
+  medicalCenters: Center[];
   ticketNumber: string;
 }
 
@@ -24,7 +25,19 @@ export class StoreService {
   state: UserData;
 
   getState(): UserData {
-    return this.state;
+    return this.state
+      ? this.state
+      : {
+          sex: null,
+          name: null,
+          reason: null,
+          tel: null,
+          age: null,
+          department: null,
+          center: null,
+          medicalCenters: null,
+          ticketNumber: null,
+        };
   }
 
   setState(state: UserData) {
