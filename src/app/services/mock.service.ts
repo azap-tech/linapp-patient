@@ -27,6 +27,19 @@ export class MockService {
     return of(centers);
   }
 
+  getMedicalCenters() {
+    const centers: Center[] = [];
+    for (let i = 0; i < 20; i++) {
+      centers.push({
+        name: `Centre ${i + 1}`,
+        address: `Adresse du centre ${i + 1}`,
+        minsToWait: 40 + i * 10,
+      });
+    }
+
+    return centers;
+  }
+
   getReasons(): Observable<string[]> {
     return of(['Fracture', 'Cardio', 'Gastro', 'Covid19']);
   }
