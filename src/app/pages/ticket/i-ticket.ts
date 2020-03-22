@@ -1,6 +1,6 @@
 export enum Sex {
-  Male,
-  Female,
+  Male = 'male',
+  Female = 'female',
 }
 
 export interface ITicket {

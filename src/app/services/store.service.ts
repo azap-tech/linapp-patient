@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { ITicket, Sex } from '../pages/ticket/i-ticket';
 
-interface UserData extends ITicket {
+export interface UserData extends ITicket {
   ticketNumber: string;
   sex: Sex;
   name: string;
