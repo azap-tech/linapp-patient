@@ -11,23 +11,44 @@
 <mat-sidenav-container>
   <mat-sidenav #sidenav>
     <mat-nav-list>
-      <a mat-list-item [routerLink]="'/home'" routerLinkActive="active">
+      <a
+        mat-list-item
+        [routerLink]="'/home'"
+        routerLinkActive="active"
+        (click)="sidenav.toggle()"
+      >
         Home
       </a>
-      <a mat-list-item [routerLink]="'/centers-list'" routerLinkActive="active">
+      <a
+        mat-list-item
+        [routerLink]="'/centers-list'"
+        (click)="sidenav.toggle()"
+        routerLinkActive="active"
+      >
         Centers list
       </a>
-      <a mat-list-item [routerLink]="'/ticket'" routerLinkActive="active">
+      <a
+        mat-list-item
+        (click)="sidenav.toggle()"
+        [routerLink]="'/ticket'"
+        routerLinkActive="active"
+      >
         Ticket
       </a>
       <a
         mat-list-item
+        (click)="sidenav.toggle()"
         [routerLink]="'/sms-confirmation'"
         routerLinkActive="active"
       >
         SMS Confirmation
       </a>
-      <a mat-list-item [routerLink]="'/time-tracker'" routerLinkActive="active">
+      <a
+        mat-list-item
+        [routerLink]="'/time-tracker'"
+        (click)="sidenav.toggle()"
+        routerLinkActive="active"
+      >
         Time Tracker
       </a>
     </mat-nav-list>
