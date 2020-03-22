@@ -45,17 +45,23 @@ export class TicketComponent implements OnInit {
   }
 
   onSubmit() {
-    this.storeService.setState(
-      Object.assign(this.storeService.getState(), this.ticketForm.value)
-    );
+    this.updateState();
     this.setTicket({ ...this.storeService.getState() });
+    this.router.navigate(['/time-tracker']);
   }
 
   private setTicket(ticket: ITicket): void {
     this.ticket = new Ticket({ ...ticket });
   }
 
+  private updateState(): void {
+    this.storeService.setState(
+      Object.assign(this.storeService.getState(), this.ticketForm.value)
+    );
+  }
+
   onReasonInputClick(): void {
+    this.updateState();
     this.router.navigate(['/ticket', 'reason']);
   }
 }
