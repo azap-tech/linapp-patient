@@ -11,7 +11,10 @@ interface UserData {
   reason: string;
   tel: string;
   age: number;
-  department: string;
+  minsToWaitForVisit: number;
+  center: Center;
+  medicalCenters: Center[];
+  ticketNumber: string;
 }
 
 @Injectable({
@@ -21,7 +24,19 @@ export class StoreService {
   state: UserData;
 
   getState(): UserData {
-    return this.state;
+    return this.state
+      ? this.state
+      : {
+          sex: null,
+          name: null,
+          reason: null,
+          tel: null,
+          age: null,
+          center: null,
+          medicalCenters: null,
+          ticketNumber: null,
+          minsToWaitForVisit: null,
+        };
   }
 
   setState(state: UserData) {

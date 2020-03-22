@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { Patient } from './patient';
-import { StoreService, UserData } from 'src/app/services/store.service';
+import { Patient } from './patient' 
+import { StoreService } from 'src/app/services/store.service';
 
 
 @Component({
@@ -10,24 +10,19 @@ import { StoreService, UserData } from 'src/app/services/store.service';
 })
 export class SmsConfirmationComponent implements OnInit {
 
-  state: UserData;
-
-  PATIENT = {
-    id: '0',
-    name: 'Dupont',
-    title: 'Monsieur',
-    number: '0661664522'
-  };
-
-  patient = this.PATIENT;
-
-  name = null;
+  state: any;
+  patient: any;
 
   constructor( private store: StoreService ) { 
   	}
 
   ngOnInit() {
     this.state = this.store.getState();
+    if(this.state.sex === 'Male'){
+    	this.patient.title = "Monsieur";
+    }else{
+    	this.patient.title = "Madame";
+    }
   }
 
 }
