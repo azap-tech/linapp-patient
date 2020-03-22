@@ -32,8 +32,6 @@ import { ValidationButtonComponent } from './components/validation-button/valida
 import { PageNotFoundComponent } from './pages/page-not-found/page-not-found.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ReactiveFormsModule } from '@angular/forms';
-import { TicketHeaderComponent } from './pages/ticket/ticket-header/ticket-header.component';
-import { TicketFormComponent } from './pages/ticket/ticket-form/ticket-form.component';
 import { TicketReasonComponent } from './pages/ticket/ticket-reason/ticket-reason.component';
 import { CentersListItemComponent } from './pages/centers-list/centers-list-item/centers-list-item.component';
 
@@ -49,8 +47,6 @@ import { CentersListItemComponent } from './pages/centers-list/centers-list-item
     NavbarComponent,
     ValidationButtonComponent,
     PageNotFoundComponent,
-    TicketHeaderComponent,
-    TicketFormComponent,
     TicketReasonComponent,
     CentersListItemComponent,
   ],
