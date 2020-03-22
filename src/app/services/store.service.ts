@@ -1,11 +1,8 @@
 import { Injectable } from '@angular/core';
+import { ITicket, Sex } from '../pages/ticket/i-ticket';
 
-enum Sex {
-  Male,
-  Female,
-}
-
-interface UserData {
+interface UserData extends ITicket {
+  ticketNumber: string;
   sex: Sex;
   name: string;
   reason: string;
@@ -14,7 +11,6 @@ interface UserData {
   department: Department;
   center: Center;
   medicalCenters: Center[];
-  ticketNumber: string;
 }
 
 @Injectable({
@@ -27,6 +23,7 @@ export class StoreService {
     return this.state
       ? this.state
       : {
+          ticketNumber: null,
           sex: null,
           name: null,
           reason: null,
@@ -35,7 +32,6 @@ export class StoreService {
           department: null,
           center: null,
           medicalCenters: null,
-          ticketNumber: null,
         };
   }
 

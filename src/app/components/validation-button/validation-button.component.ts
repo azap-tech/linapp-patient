@@ -7,6 +7,8 @@ import { Component, OnInit, Input, Output } from '@angular/core';
 })
 export class ValidationButtonComponent implements OnInit {
   @Input() text: any;
+  @Input() disabled: boolean;
+
   constructor() {}
 
   ngOnInit() {}
