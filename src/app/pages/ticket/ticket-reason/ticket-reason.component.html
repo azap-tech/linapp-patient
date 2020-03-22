@@ -1,1 +1,32 @@
-<p>ticket-reason works!</p>
+<form [formGroup]="ticketReasonForm" (ngSubmit)="onSubmit()">
+  <p>
+    <mat-form-field>
+      <mat-label>Motif</mat-label>
+      <input formControlName="reason" type="text" matInput />
+    </mat-form-field>
+  </p>
+
+  <div class="container">
+    <div class="row">
+      <button mat-raised-button (click)="onButtonPress('Fracture')">
+        Fracture
+      </button>
+      <button mat-raised-button (click)="onButtonPress('Cardio')">
+        Cardio
+      </button>
+    </div>
+    <div class="row">
+      <button mat-raised-button (click)="onButtonPress('Gastro')">
+        Gastro
+      </button>
+      <button mat-raised-button color="warn" (click)="onButtonPress('Covid19')">
+        Covid19
+      </button>
+    </div>
+  </div>
+
+  <app-validation-button
+    [text]="'Ok'"
+    [disabled]="!ticketReasonForm.valid"
+  ></app-validation-button>
+</form>
