@@ -8,6 +8,7 @@ export interface UserData extends ITicket {
   reason: string;
   tel: string;
   age: number;
+  minsToWaitForVisit: number;
   department: Department;
   center: Center;
   medicalCenters: Center[];
@@ -32,6 +33,7 @@ export class StoreService {
           department: null,
           center: null,
           medicalCenters: null,
+          minsToWaitForVisit: null,
         };
   }
 

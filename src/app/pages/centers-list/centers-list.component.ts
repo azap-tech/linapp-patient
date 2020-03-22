@@ -3,6 +3,7 @@ import { NetworkService } from 'src/app/services/network.service';
 import { Observable } from 'rxjs';
 import { StoreService } from 'src/app/services/store.service';
 import { Router } from '@angular/router';
+import { MockService } from 'src/app/services/mock.service';
 
 @Component({
   selector: 'app-centers-list',
@@ -15,11 +16,13 @@ export class CentersListComponent implements OnInit {
   constructor(
     private networkService: NetworkService,
     private store: StoreService,
-    private router: Router
+    private router: Router,
+    private mockService: MockService
   ) {}
 
   ngOnInit() {
-    this.medicalCenters = this.store.getState().medicalCenters;
+    // this.medicalCenters = this.store.getState().medicalCenters;
+    this.medicalCenters = this.mockService.getMedicalCenters();
   }
 
   chooseCenter(medicalCenter) {
