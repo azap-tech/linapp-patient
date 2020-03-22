@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { MockService } from './mock.service';
 import { Observable } from 'rxjs';
+import { ITicket } from '../pages/ticket/i-ticket';
 
 @Injectable({
   providedIn: 'root',
@@ -29,5 +30,9 @@ export class NetworkService {
 
   chooseDepartment(department: Department): Observable<Center[]> {
     return this.mockService.chooseDepartment();
+  }
+
+  getTicketNumber(ticket: ITicket): Observable<number> {
+    return this.mockService.getTicketNumber(ticket);
   }
 }

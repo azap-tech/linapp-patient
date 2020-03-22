@@ -15,6 +15,7 @@ import {
   MatIconModule,
   MatSidenavModule,
   MatListModule,
+  MatCardModule,
   MatGridListModule,
 } from '@angular/material';
 import { RouterModule, Routes } from '@angular/router';
@@ -32,6 +33,7 @@ import { ValidationButtonComponent } from './components/validation-button/valida
 import { PageNotFoundComponent } from './pages/page-not-found/page-not-found.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ReactiveFormsModule } from '@angular/forms';
+import { TicketReasonComponent } from './pages/ticket/ticket-reason/ticket-reason.component';
 import { TrackerHeaderComponent } from './pages/time-tracker/tracker-header/tracker-header.component';
 import { TrackerCountdownComponent } from './pages/time-tracker/tracker-countdown/tracker-countdown.component';
 import { CentersListItemComponent } from './pages/centers-list/centers-list-item/centers-list-item.component';
@@ -48,6 +50,7 @@ import { CentersListItemComponent } from './pages/centers-list/centers-list-item
     NavbarComponent,
     ValidationButtonComponent,
     PageNotFoundComponent,
+    TicketReasonComponent,
     TrackerHeaderComponent,
     TrackerCountdownComponent,
     CentersListItemComponent,
@@ -72,6 +75,7 @@ import { CentersListItemComponent } from './pages/centers-list/centers-list-item
     MatListModule,
     MatGridListModule,
     ReactiveFormsModule,
+    MatCardModule,
   ],
   providers: [],
   bootstrap: [AppComponent],
