@@ -1,4 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { Patient } from './patient';
+import { StoreService, UserData } from 'src/app/services/store.service';
+
 
 @Component({
   selector: 'app-sms-confirmation',
@@ -7,9 +10,25 @@ import { Component, OnInit } from '@angular/core';
 })
 export class SmsConfirmationComponent implements OnInit {
 
-  constructor() { }
+  state: UserData;
+
+  PATIENT = {
+    id: '0',
+    name: 'Dupont',
+    title: 'Monsieur',
+    number: '0661664522'
+  };
+
+  patient = this.PATIENT;
+
+  name = null;
+
+  constructor( private store: StoreService ) { 
+  	}
 
   ngOnInit() {
+    this.state = this.store.getState();
   }
 
 }
+
