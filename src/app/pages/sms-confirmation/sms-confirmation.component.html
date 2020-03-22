@@ -1,4 +1,11 @@
-<div class="container"
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+	<title></title>
+</head>
+<body>
+	<div class="container"
     fxLayout="row"
     fxLayout.sm="column"
     fxLayout.xs="column"
@@ -6,20 +13,29 @@
     fxLayoutGap="10px" 
     fxLayoutGap.xs="0">
 
-  <div fxFlex="40">
-    <p>Merci {{patient.title}} {{state.name}} !</p>
-  </div>
+	  <div col-5 col-sm-2 fxFlex="40">
+	    <h1>Merci {{patient.title}} {{state.name}} !</h1>
+	  </div>
 
-  <div fxFlex="40">
-    <p>Vous etes bien enregistré</p>
-  </div>
+	  <div col-6 col-sm-5 fxFlex="40">
+	    <h3>Vous etes bien enregistré</h3>
+	  </div>
 
-  <div fxFlex="40">
-    <p>Un sms avec votre ticket a été envoyé a ce numéro</p>
-  </div>
+	  <div col-6 col-sm-4 fxFlex="40">
+	    <p>Un sms avec votre ticket a été envoyé a ce numéro</p>
+	  </div>
 
-  <div fxFlex="40">
-    <p>{{state.tel}}</p>
-  </div>
+	  <div fxFlex="40">
+	    <p>{{state.tel}}</p>
+	  </div>
 
-</div>
+	</div>
+    <!-- jQuery first, then Tether, then Bootstrap JS. -->
+    <script src="node_modules/jquery/dist/jquery.min.js"></script>
+    <script src="node_modules/tether/dist/js/tether.min.js"></script>
+    <script src="node_modules/bootstrap/dist/js/bootstrap.min.js"></script>
+</body>
+</html>
+
+
+
