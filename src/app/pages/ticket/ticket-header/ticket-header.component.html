@@ -1,5 +1,14 @@
 <mat-card>
   <mat-card-header>
-    <mat-card-title> Prendre un tiket dans le Centre 1 - #021 </mat-card-title>
+    <mat-card-title>
+      Prendre un tiket dans le Centre 1
+    </mat-card-title>
+    <mat-card-subtitle>
+      Ticket number:
+      <span *ngIf="ticketNumber; else noTicketAssinged"
+        ># {{ ticketNumber }}</span
+      >
+      <ng-template #noTicketAssinged>not assigned</ng-template>
+    </mat-card-subtitle>
   </mat-card-header>
 </mat-card>

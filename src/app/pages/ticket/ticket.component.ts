@@ -1,15 +1,20 @@
 import { Component, OnInit } from '@angular/core';
+import { Ticket } from './ticket';
 
 @Component({
   selector: 'app-ticket',
   templateUrl: './ticket.component.html',
-  styleUrls: ['./ticket.component.scss']
+  styleUrls: ['./ticket.component.scss'],
 })
 export class TicketComponent implements OnInit {
-
-  constructor() { }
-
-  ngOnInit() {
+  ticket: Ticket;
+  constructor() {
+    this.ticket = new Ticket();
   }
 
+  ngOnInit() {}
+
+  onTicketCreated(data: Event): void {
+    this.ticket.setTicketNumber('021');
+  }
 }

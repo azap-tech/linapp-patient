@@ -1,2 +1,2 @@
-<app-ticket-header></app-ticket-header>
-<app-ticket-form></app-ticket-form>
+<app-ticket-header [ticketNumber]="ticket.ticketNumber"></app-ticket-header>
+<app-ticket-form (ticketCreated)="onTicketCreated($event)"></app-ticket-form>
