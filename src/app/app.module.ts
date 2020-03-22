@@ -15,6 +15,7 @@ import {
   MatIconModule,
   MatSidenavModule,
   MatListModule,
+  MatGridListModule,
 } from '@angular/material';
 import { RouterModule, Routes } from '@angular/router';
 
@@ -31,6 +32,8 @@ import { ValidationButtonComponent } from './components/validation-button/valida
 import { PageNotFoundComponent } from './pages/page-not-found/page-not-found.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ReactiveFormsModule } from '@angular/forms';
+import { TrackerHeaderComponent } from './pages/time-tracker/tracker-header/tracker-header.component';
+import { TrackerCountdownComponent } from './pages/time-tracker/tracker-countdown/tracker-countdown.component';
 
 @NgModule({
   declarations: [
@@ -44,6 +47,8 @@ import { ReactiveFormsModule } from '@angular/forms';
     NavbarComponent,
     ValidationButtonComponent,
     PageNotFoundComponent,
+    TrackerHeaderComponent,
+    TrackerCountdownComponent,
   ],
   imports: [
     BrowserModule,
@@ -63,6 +68,7 @@ import { ReactiveFormsModule } from '@angular/forms';
     MatIconModule,
     MatSidenavModule,
     MatListModule,
+    MatGridListModule,
     ReactiveFormsModule,
   ],
   providers: [],

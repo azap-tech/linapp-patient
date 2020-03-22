@@ -12,6 +12,9 @@ interface UserData {
   tel: string;
   age: number;
   department: string;
+  center: Center;
+  minsToWaitForVisit: number;
+  ticketNumber: string;
 }
 
 @Injectable({
