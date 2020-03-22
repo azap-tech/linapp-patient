@@ -35,6 +35,7 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { TicketHeaderComponent } from './pages/ticket/ticket-header/ticket-header.component';
 import { TicketFormComponent } from './pages/ticket/ticket-form/ticket-form.component';
 import { TicketReasonComponent } from './pages/ticket/ticket-reason/ticket-reason.component';
+import { CentersListItemComponent } from './pages/centers-list/centers-list-item/centers-list-item.component';
 
 @NgModule({
   declarations: [
@@ -51,6 +52,7 @@ import { TicketReasonComponent } from './pages/ticket/ticket-reason/ticket-reaso
     TicketHeaderComponent,
     TicketFormComponent,
     TicketReasonComponent,
+    CentersListItemComponent,
   ],
   imports: [
     BrowserModule,
