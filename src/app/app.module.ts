@@ -15,6 +15,7 @@ import {
   MatIconModule,
   MatSidenavModule,
   MatListModule,
+  MatCardModule,
 } from '@angular/material';
 import { RouterModule, Routes } from '@angular/router';
 
@@ -31,6 +32,9 @@ import { ValidationButtonComponent } from './components/validation-button/valida
 import { PageNotFoundComponent } from './pages/page-not-found/page-not-found.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ReactiveFormsModule } from '@angular/forms';
+import { TicketHeaderComponent } from './pages/ticket/ticket-header/ticket-header.component';
+import { TicketFormComponent } from './pages/ticket/ticket-form/ticket-form.component';
+import { TicketReasonComponent } from './pages/ticket/ticket-reason/ticket-reason.component';
 
 @NgModule({
   declarations: [
@@ -44,6 +48,9 @@ import { ReactiveFormsModule } from '@angular/forms';
     NavbarComponent,
     ValidationButtonComponent,
     PageNotFoundComponent,
+    TicketHeaderComponent,
+    TicketFormComponent,
+    TicketReasonComponent,
   ],
   imports: [
     BrowserModule,
@@ -64,6 +71,7 @@ import { ReactiveFormsModule } from '@angular/forms';
     MatSidenavModule,
     MatListModule,
     ReactiveFormsModule,
+    MatCardModule,
   ],
   providers: [],
   bootstrap: [AppComponent],

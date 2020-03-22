@@ -1,0 +1,40 @@
+<form [formGroup]="">
+  <p>
+    <label>Sexe: </label>
+    <mat-radio-group class="sex-radio-group">
+      <mat-radio-button
+        class="sex-radio-group"
+        [value]="'male'"
+        [checked]="true"
+        >Homme</mat-radio-button
+      >
+      <mat-radio-button class="sex-radio-group" [value]="'female'"
+        >Femme</mat-radio-button
+      >
+    </mat-radio-group>
+  </p>
+  <p>
+    <mat-form-field appearance="fill">
+      <mat-label>Nom</mat-label>
+      <input matInput />
+    </mat-form-field>
+  </p>
+  <p>
+    <mat-form-field appearance="fill">
+      <mat-label>Motif</mat-label>
+      <input matInput />
+    </mat-form-field>
+  </p>
+  <p>
+    <mat-form-field appearance="fill">
+      <mat-label>Tel</mat-label>
+      <input matInput />
+    </mat-form-field>
+  </p>
+  <p>
+    <mat-form-field appearance="fill">
+      <mat-label>Age</mat-label>
+      <input matInput />
+    </mat-form-field>
+  </p>
+</form>
