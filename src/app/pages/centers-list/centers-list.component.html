@@ -1,9 +1,11 @@
-<div>
-  <img src="assets/doctor.svg" />
+<div class="header-part">
+  <div>
+    <img src="assets/doctor.svg" />
+  </div>
   <p>Voici la liste des centres suceptibles de vous accueillir</p>
 </div>
 
-<div>
+<div class="items-list">
   <app-centers-list-item
     [medicalCenter]="medicalCenter"
     *ngFor="let medicalCenter of medicalCenters"

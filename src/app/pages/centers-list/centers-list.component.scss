@@ -1,0 +1,17 @@
+.header-part {
+  display: flex;
+  align-items: center;
+  padding-left: 30px;
+  padding-right: 30px;
+  padding-bottom: 15px;
+  padding-top: 30px;
+
+  p {
+    width: 80%;
+    text-align: center;
+  }
+}
+
+.items-list {
+  padding: 20px;
+}
