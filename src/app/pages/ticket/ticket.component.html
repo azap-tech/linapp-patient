@@ -45,13 +45,12 @@
         <input formControlName="age" type="number" matInput />
       </mat-form-field>
     </p>
-  </div>
-  <div class="form-end fixed-bottom">
-    <p id="CGU">
+    <a href="http://azap.io/cgu" id="CGU">
       En cliquant sur le bouton ci-dessous j’accepte les conditions générales
       d’utilisation du service
-    </p>
-
+    </a>
+  </div>
+  <div class="form-end fixed-bottom">
     <app-validation-button
       [text]="'Valider'"
       [disabled]="!ticketForm.valid"
