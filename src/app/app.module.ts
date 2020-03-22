@@ -31,6 +31,7 @@ import { ValidationButtonComponent } from './components/validation-button/valida
 import { PageNotFoundComponent } from './pages/page-not-found/page-not-found.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ReactiveFormsModule } from '@angular/forms';
+import { CentersListItemComponent } from './pages/centers-list/centers-list-item/centers-list-item.component';
 
 @NgModule({
   declarations: [
@@ -44,6 +45,7 @@ import { ReactiveFormsModule } from '@angular/forms';
     NavbarComponent,
     ValidationButtonComponent,
     PageNotFoundComponent,
+    CentersListItemComponent,
   ],
   imports: [
     BrowserModule,

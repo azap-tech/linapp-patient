@@ -22,4 +22,12 @@ export class NetworkService {
   getMinsWaitingTime(): Observable<number> {
     return this.mockService.getMinsWaitingTime();
   }
+
+  chooseCenter(center): Observable<string> {
+    return this.mockService.chooseCenter();
+  }
+
+  chooseDepartment(department: Department): Observable<Center[]> {
+    return this.mockService.chooseDepartment();
+  }
 }

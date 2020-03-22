@@ -1,1 +1,13 @@
-<p>centers-list works!</p>
+<div>
+  <img src="assets/doctor.svg" />
+  <p>Voici la liste des centres suceptibles de vous accueillir</p>
+</div>
+
+<div>
+  <app-centers-list-item
+    [medicalCenter]="medicalCenter"
+    *ngFor="let medicalCenter of medicalCenters"
+    (click)="chooseCenter(medicalCenter)"
+  >
+  </app-centers-list-item>
+</div>
