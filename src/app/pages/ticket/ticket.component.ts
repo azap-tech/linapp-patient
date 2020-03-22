@@ -1,8 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { Ticket } from './ticket';
 import { ITicket, Sex } from './i-ticket';
-import { StoreService, UserData } from 'src/app/services/store.service';
+import { UserData, StoreService } from 'src/app/services/store.service';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-ticket',
@@ -14,7 +15,7 @@ export class TicketComponent implements OnInit {
   ticketForm: FormGroup;
   private formBuilder: FormBuilder;
 
-  constructor(private storeService: StoreService) {
+  constructor(private storeService: StoreService, private router: Router) {
     this.formBuilder = new FormBuilder();
     this.ticketForm = this.formBuilder.group({
       sex: [Sex.Male, Validators.required],
@@ -52,5 +53,9 @@ export class TicketComponent implements OnInit {
 
   private setTicket(ticket: ITicket): void {
     this.ticket = new Ticket({ ...ticket });
+  }
+
+  onReasonInputClick(): void {
+    this.router.navigate(['/ticket', 'reason']);
   }
 }

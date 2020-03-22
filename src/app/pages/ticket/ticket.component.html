@@ -33,7 +33,12 @@
   <p>
     <mat-form-field appearance="fill">
       <mat-label>Motif</mat-label>
-      <input formControlName="reason" type="text" matInput />
+      <input
+        (click)="onReasonInputClick()"
+        formControlName="reason"
+        type="text"
+        matInput
+      />
     </mat-form-field>
   </p>
   <p>
