@@ -1,26 +1,29 @@
-<div>
-  <img src="assets/document.svg" />
-  <img src="assets/doctor.svg" />
-</div>
+<div class="container">
+  <div class="images">
+    <img src="assets/document.svg" />
+    <img src="assets/doctor.svg" />
+  </div>
 
-<p>
-  Bonjour, bienvenue sur l’interface de prise de ticket pour une consultation
-  médicale
-</p>
+  <p id="bonjour-text">
+    Bonjour, bienvenue sur l’interface de prise de ticket pour une consultation
+    médicale
+  </p>
 
-<div>
-  <p>Veuillez séléctionner votre département</p>
+  <div>
+    <form [formGroup]="departmentForm" (ngSubmit)="onSubmit()">
+      <div id="department-selection">
+        <p>Veuillez séléctionner votre département</p>
+        <select name="department" formControlName="department">
+          <option
+            *ngFor="let department of departments | async"
+            value="{{ department.name }}"
+            selected
+            >{{ department.name }}</option
+          >
+        </select>
+      </div>
 
-  <form [formGroup]="departmentForm" (ngSubmit)="onSubmit()">
-    <select name="department" formControlName="department">
-      <option
-        *ngFor="let department of departments | async"
-        value="{{ department.name }}"
-        selected
-        >{{ department.name }}</option
-      >
-    </select>
-
-    <app-validation-button [text]="'Validate'"> </app-validation-button>
-  </form>
+      <app-validation-button [text]="'Validate'"> </app-validation-button>
+    </form>
+  </div>
 </div>
