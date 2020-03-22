@@ -37,6 +37,7 @@ export class StoreService {
           center: null,
           medicalCenters: null,
           ticketNumber: null,
+          minsToWaitForVisit: null,
         };
   }
 
