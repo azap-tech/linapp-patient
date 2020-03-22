@@ -1,0 +1,53 @@
+mat-card-title {
+  img,
+  p {
+    display: inline-block;
+  }
+  img {
+    width: 20%;
+  }
+  p {
+    width: 80%;
+    vertical-align: middle;
+    height: 100%;
+  }
+}
+
+form {
+  padding: 10px;
+}
+button {
+  margin-bottom: 1%;
+  width: 100%;
+}
+
+mat-radio-group {
+  mat-radio-button {
+    padding: 10px;
+  }
+
+  label {
+    margin-right: 10px;
+  }
+}
+
+mat-form-field {
+  width: 100%;
+}
+
+.form-container {
+  padding: 20px;
+  //   background: #eaf4fb;
+  border-radius: 8px;
+  margin-bottom: 15px;
+}
+
+#CGU {
+  display: flex;
+  align-items: center;
+  text-align: center;
+
+  /* Bleu pro */
+
+  color: #055d87;
+}

@@ -11,6 +11,8 @@
       <button mat-raised-button (click)="onButtonPress('Fracture')">
         Fracture
       </button>
+    </div>
+    <div class="row">
       <button mat-raised-button (click)="onButtonPress('Cardio')">
         Cardio
       </button>
@@ -19,14 +21,18 @@
       <button mat-raised-button (click)="onButtonPress('Gastro')">
         Gastro
       </button>
+    </div>
+    <div class="row">
       <button mat-raised-button color="warn" (click)="onButtonPress('Covid19')">
         Covid19
       </button>
     </div>
   </div>
 
-  <app-validation-button
-    [text]="'Ok'"
-    [disabled]="!ticketReasonForm.valid"
-  ></app-validation-button>
+  <div class="form-end fixed-bottom">
+    <app-validation-button
+      [text]="'Ok'"
+      [disabled]="!ticketReasonForm.valid"
+    ></app-validation-button>
+  </div>
 </form>
