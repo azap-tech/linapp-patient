@@ -7,6 +7,10 @@ import { createGlobalStyle } from "styled-components";
 const GlobalStyle = createGlobalStyle`
   * {
     box-sizing: border-box;
+    outline: 0;
+    ::-moz-focus-inner { 
+    border: 0; 
+    }
   }
   body {
     margin:0;
