@@ -7,7 +7,7 @@ import {
   MobileHeader,
   MobileContent
 } from "../components/MobileLayout";
-import { Button } from "../components/Button";
+import { Button, LinkButton } from "../components/Button";
 import { FormLayout } from "../components/FormLayout";
 
 export function TicketValidation() {
@@ -22,7 +22,7 @@ export function TicketValidation() {
         </h2>
         <FormLayout>
           <input type="text" />
-          <a href="">Code non reçu ?</a>
+          <LinkButton>Code non reçu ?</LinkButton>
         </FormLayout>
         <Button onClick={e => history.push("/ticket-view")}>Valider</Button>
       </MobileContent>

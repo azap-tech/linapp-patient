@@ -25,10 +25,10 @@ export function TicketForm() {
         <FormLayout>
           <RadioLayout>
             <label>Sex</label>
-            <Radio active={sex == "H"} onClick={e => setSex("H")}>
+            <Radio active={sex === "H"} onClick={e => setSex("H")}>
               Homme
             </Radio>
-            <Radio active={sex == "F"} onClick={e => setSex("F")}>
+            <Radio active={sex === "F"} onClick={e => setSex("F")}>
               Femme
             </Radio>
           </RadioLayout>
