@@ -12,7 +12,7 @@ export const MobileLayout = styled.div`
   justify-content: center;
   align-items: center;
   width: 100vw;
-  min-height: 100vh;
+  min-height: 100%;
 `;
 
 const MobileHeaderLayout = styled.div`

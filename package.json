@@ -9,8 +9,10 @@
     "@testing-library/user-event": "^7.1.2",
     "react": "^16.13.1",
     "react-dom": "^16.13.1",
+    "react-redux": "^7.1.0-rc.1",
     "react-router-dom": "^5.1.2",
     "react-scripts": "3.4.1",
+    "redux-logger": "^3.0.6",
     "styled-components": "^5.0.1"
   },
   "scripts": {
@@ -19,6 +21,7 @@
     "test": "react-scripts test",
     "eject": "react-scripts eject"
   },
+  "proxy": "http://localhost:8080/",
   "eslintConfig": {
     "extends": "react-app"
   },

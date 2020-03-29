@@ -1,5 +1,8 @@
 import React from "react";
 import ReactDOM from "react-dom";
+import { BrowserRouter as Router } from "react-router-dom";
+import { Provider } from "react-redux";
+import { createStore } from "./state/store";
 import App from "./App";
 import * as serviceWorker from "./serviceWorker";
 import { createGlobalStyle } from "styled-components";
@@ -25,16 +28,21 @@ const GlobalStyle = createGlobalStyle`
     ::-moz-focus-inner { border: 0; }
   }
 
-  body {
+  html,body {
     margin:0;
     padding:0;
+    min-height:100vh2;
   }
 
 `;
 ReactDOM.render(
   <React.StrictMode>
-    <GlobalStyle />
-    <App />
+    <Provider store={createStore({})}>
+      <GlobalStyle />
+      <Router>
+        <App />
+      </Router>
+    </Provider>
   </React.StrictMode>,
   document.getElementById("root")
 );

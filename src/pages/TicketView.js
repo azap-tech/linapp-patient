@@ -1,5 +1,6 @@
-import React from "react";
+import React, { useEffect } from "react";
 import styled from "styled-components";
+import { useParams } from "react-router-dom";
 import { ReactComponent as TicketSVG } from "../assets/ticket.svg";
 import {
   MobileLayout,
@@ -7,6 +8,9 @@ import {
   MobileContent
 } from "../components/MobileLayout";
 import { ButtonOutline } from "../components/Button";
+import { useDispatch, useSelector } from "react-redux";
+import { getTicket } from "../state/ClientTicket";
+import { getLocations } from "../state/Locations";
 
 const DateTimeLayout = styled.div`
   width: 22vh;
@@ -57,6 +61,26 @@ const TicketTitleContent = styled.div`
   }
 `;
 export function TicketView() {
+  const dispatch = useDispatch();
+  let { id } = useParams();
+  const ticket = useSelector(state => {
+    const t = state.clientTicket;
+    if (t === null) {
+      return null;
+    }
+    const location =
+      state.locations && state.locations.find(l => t.locationId === l.id);
+    return { ...t, location };
+  });
+
+  useEffect(() => {
+    dispatch(getLocations());
+    dispatch(getTicket(id));
+  }, [dispatch, id]);
+
+  if (!ticket || !ticket.location) {
+    return <div>loading ...</div>;
+  }
   return (
     <MobileLayout>
       <MobileHeader />
@@ -64,10 +88,10 @@ export function TicketView() {
         <TicketTitle>
           <TicketSVG />
           <TicketTitleContent>
-            <div>Centre Colombes</div>
+            <div>{ticket.location.name}</div>
             <span>Adresse du centre</span>
           </TicketTitleContent>
-          <div>#208</div>
+          <div>#{ticket.id}</div>
         </TicketTitle>
         <h3>Date et heure de passage estimé :</h3>
         <DateTime day="Lun 22/11" hours="13h22" />

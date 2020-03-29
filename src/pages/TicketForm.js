@@ -1,5 +1,4 @@
 import React, { useState } from "react";
-import { useHistory } from "react-router-dom";
 
 import { ReactComponent as TicketSVG } from "../assets/ticket.svg";
 
@@ -11,16 +10,18 @@ import {
 import { Button } from "../components/Button";
 import { FormLayout, RadioLayout, Radio } from "../components/FormLayout";
 
-export function TicketForm() {
-  const history = useHistory();
+export function TicketForm({ location, onTicket }) {
   const [sex, setSex] = useState("F");
+  const [age, setAge] = useState(null);
+  const [phone, setPhone] = useState(null);
+
   return (
     <MobileLayout>
       <MobileHeader />
       <MobileContent>
         <h2>
           <TicketSVG />
-          Prendre un ticket au Centre Colombes
+          Prendre un ticket au Centre {location.name}
         </h2>
         <FormLayout>
           <RadioLayout>
@@ -33,17 +34,27 @@ export function TicketForm() {
             </Radio>
           </RadioLayout>
           <div>
-            <label>Âge</label> <input />
+            <label>Âge</label>
+            <input
+              type="number"
+              value={age}
+              onChange={evt => setAge(evt.target.value)}
+            />
           </div>
           <div>
-            <label>Mobile</label> <input />
+            <label>Mobile</label>
+            <input
+              type="phone"
+              value={phone}
+              onChange={evt => setPhone(evt.target.value)}
+            />
           </div>
         </FormLayout>
         <p>
           En cliquant sur le bouton ci-dessous j’accepte les conditions
           générales d’utilisation du service
         </p>
-        <Button onClick={e => history.push("/ticket-validation")}>
+        <Button onClick={e => onTicket({ sex, age: parseInt(age), phone })}>
           Valider
         </Button>
       </MobileContent>

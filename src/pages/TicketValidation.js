@@ -1,5 +1,4 @@
 import React from "react";
-import { useHistory } from "react-router-dom";
 import { ReactComponent as SmsSVG } from "../assets/sms.svg";
 
 import {
@@ -10,8 +9,7 @@ import {
 import { Button, LinkButton } from "../components/Button";
 import { FormLayout } from "../components/FormLayout";
 
-export function TicketValidation() {
-  const history = useHistory();
+export function TicketValidation({ onValidation }) {
   return (
     <MobileLayout>
       <MobileHeader />
@@ -24,7 +22,7 @@ export function TicketValidation() {
           <input type="text" />
           <LinkButton>Code non reçu ?</LinkButton>
         </FormLayout>
-        <Button onClick={e => history.push("/ticket-view")}>Valider</Button>
+        <Button onClick={e => onValidation()}>Valider</Button>
       </MobileContent>
     </MobileLayout>
   );

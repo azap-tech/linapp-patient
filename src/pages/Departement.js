@@ -1,6 +1,7 @@
-import React from "react";
+import React, { useEffect } from "react";
 import styled from "styled-components";
-import { useHistory } from "react-router-dom";
+import { useDispatch, useSelector } from "react-redux";
+import { getLocations } from "../state/Locations";
 
 import { ReactComponent as TicketSVG } from "../assets/ticket.svg";
 import { ReactComponent as DoctorSVG } from "../assets/doctor.svg";
@@ -22,6 +23,19 @@ const DepartmentFormLayout = styled(FormLayout)`
   }
 `;
 const DepartmentForm = () => {
+  const dispatch = useDispatch();
+  const locations = useSelector(state => state.locations);
+
+  useEffect(() => {
+    dispatch(getLocations());
+  }, [dispatch]);
+  if (
+    !locations ||
+    (locations.length === 0 && <div>Network error please try later</div>)
+  ) {
+    return <div> Error please try later </div>;
+  }
+
   return (
     <DepartmentFormLayout>
       <label>Votre département</label>
@@ -36,8 +50,7 @@ const DepartmentForm = () => {
   );
 };
 
-export function Department() {
-  const history = useHistory();
+export function Department({ onDepartment }) {
   return (
     <MobileLayout>
       <MobileHeader />
@@ -51,7 +64,7 @@ export function Department() {
           consultation médicale
         </h1>
         <DepartmentForm />
-        <Button onClick={e => history.push("/locations")}>Valider</Button>
+        <Button onClick={e => onDepartment("fixme")}>Valider</Button>
       </MobileContent>
     </MobileLayout>
   );

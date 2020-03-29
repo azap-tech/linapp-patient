@@ -1,6 +1,7 @@
-import React from "react";
+import React, { useEffect } from "react";
 import styled from "styled-components";
-import { useHistory } from "react-router-dom";
+import { useDispatch, useSelector } from "react-redux";
+import { getLocations } from "../state/Locations";
 
 import { ReactComponent as DoctorSVG } from "../assets/doctor.svg";
 
@@ -62,23 +63,28 @@ const TimeLayout = styled.div`
     font-size: large;
   }
 `;
-const LocationCard = ({ name, adress, time }) => {
-  const history = useHistory();
+const LocationCard = ({ location, ...props }) => {
   return (
-    <LocationCardLayout onClick={e => history.push("/ticket-form")}>
+    <LocationCardLayout {...props}>
       <h3>
-        <div>CHU Argenteuil </div>
-        <span>Adresse du centre</span>
+        <div>{location.name}</div>
+        <span>{location.address}</span>
       </h3>
 
       <TimeLayout>
-        <span>60</span>min
+        <span>{location.waitingTime}</span>min
       </TimeLayout>
     </LocationCardLayout>
   );
 };
 
-export function Locations() {
+export function Locations({ onLocation }) {
+  const dispatch = useDispatch();
+  const locations = useSelector(state => state.locations);
+
+  useEffect(() => {
+    dispatch(getLocations());
+  }, [dispatch]);
   return (
     <MobileLayout>
       <MobileHeader />
@@ -88,10 +94,13 @@ export function Locations() {
           Voici la liste des centres suceptibles de vous accueillir
         </h2>
         <input />
-        <LocationCard name="CHU Argenteuil" time="60" />
-        <LocationCard name="CHU Argenteuil" time="60" />
-        <LocationCard name="CHU Argenteuil" time="60" />
-        <LocationCard name="CHU Argenteuil" time="60" />
+        {(!locations || locations.length === 0) && (
+          <div>Network error please try later</div>
+        )}
+        {locations &&
+          locations.map(l => (
+            <LocationCard location={l} onClick={() => onLocation(l)} />
+          ))}
       </MobileContent>
     </MobileLayout>
   );
