@@ -63,6 +63,11 @@ const MobileContent = styled.div`
   flex-direction: column;
   align-items: center;
   justify-content: center;
+  h2 {
+    color: #055d88;
+    text-align: center;
+    font-size: large;
+  }
 `;
 
 const Button = styled.button`
@@ -74,6 +79,7 @@ const Button = styled.button`
   font-weight: bold;
   font-size: x-large;
   width: 90%;
+  min-height: 3rem;
 
   color: #fffefe;
   margin-top: auto;
@@ -134,10 +140,10 @@ function Department() {
           <TicketSVG />
           <DoctorSVG />
         </div>
-        <p>
+        <h2>
           Bonjour, bienvenue sur l’interface de prise de ticket pour une
           consultation médicale
-        </p>
+        </h2>
         <DepartmentForm />
         <Button>Valider</Button>
       </MobileContent>
