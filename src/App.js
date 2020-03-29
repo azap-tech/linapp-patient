@@ -112,11 +112,11 @@ const DepartmentForm = () => {
   return (
     <DepartmentFormLayout>
       <label>Votre département</label>
-      <select id="cars">
+      <select id="department">
         <option value="78">78</option>
       </select>
       <label>Type de consultation</label>
-      <select id="cars">
+      <select id="kind">
         <option value="covid">Covid 19</option>
       </select>
     </DepartmentFormLayout>
