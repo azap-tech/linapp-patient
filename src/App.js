@@ -6,6 +6,7 @@ import { ReactComponent as InfoSVG } from "./assets/info.svg";
 import { ReactComponent as BurgerSVG } from "./assets/burger.svg";
 import { ReactComponent as TicketSVG } from "./assets/ticket.svg";
 import { ReactComponent as DoctorSVG } from "./assets/doctor.svg";
+import arrow from "./assets/arrow.svg";
 import logo from "./assets/logo.png";
 
 function App() {
@@ -87,6 +88,54 @@ const Button = styled.button`
 
 // Component
 
+const Select = styled.select`
+  display: block;
+  font-family: Avenir;
+  font-style: normal;
+  font-weight: 500;
+  font-size: 22px;
+  line-height: 30px;
+  color: #055d88;
+  padding: 0.6em 1.4em 0.5em 0.8em;
+  width: 100%;
+  max-width: 100%;
+  margin: 0;
+  background: #ffffff;
+  border: 3px solid rgba(5, 93, 136, 0.21);
+  box-sizing: border-box;
+  border-radius: 4px;
+  -moz-appearance: none;
+  -webkit-appearance: none;
+  appearance: none;
+  background-color: #fff;
+  background-image: url(${arrow});
+  background-repeat: no-repeat, repeat;
+  background-position: right 0.7em top 50%, 0 0;
+  background-size: 0.65em auto, 100%;
+  ::-ms-expand {
+    display: none;
+  }
+  :hover {
+    border-color: #888;
+  }
+  :focus {
+    border-color: #aaa;
+    box-shadow: 0 0 1px 3px rgba(59, 153, 252, 0.7);
+    box-shadow: 0 0 0 3px -moz-mac-focusring;
+    outline: none;
+  }
+  option {
+    font-weight: normal;
+  }
+  :-moz-focusring {
+    color: transparent;
+    text-shadow: 0 0 0 #055d88; /* your normal text color here */
+  }
+  :-moz-focusring * {
+    color: #055d88; /* your normal text color here */
+    text-shadow: none;
+  }
+`;
 const MobileHeader = () => {
   return (
     <MobileHeaderLayout>
@@ -118,13 +167,13 @@ const DepartmentForm = () => {
   return (
     <DepartmentFormLayout>
       <label>Votre département</label>
-      <select id="department">
+      <Select id="department">
         <option value="78">78</option>
-      </select>
+      </Select>
       <label>Type de consultation</label>
-      <select id="kind">
+      <Select id="kind">
         <option value="covid">Covid 19</option>
-      </select>
+      </Select>
     </DepartmentFormLayout>
   );
 };

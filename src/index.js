@@ -17,10 +17,14 @@ const GlobalStyle = createGlobalStyle`
   }
   * {
     box-sizing: border-box;
-    outline: 0;
     font-family: 'Avenir';
+    
+  }
+  *,*:focus,*:hover,*:active{
+    outline:0;
     ::-moz-focus-inner { border: 0; }
   }
+
   body {
     margin:0;
     padding:0;
