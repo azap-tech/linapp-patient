@@ -63,7 +63,7 @@ export function TicketForm({ location, onTicket }) {
   const onAgeChange = (e) => {
     setAge(e.target.value);
     const age = parseInt(e.target.value, 10);
-    if (0 < age || age > 200) {
+    if (0 < age && age < 200) {
       setInvalidAge(false);
     } else {
       setInvalidAge(true);
