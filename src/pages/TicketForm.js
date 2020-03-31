@@ -9,6 +9,20 @@ import {
 } from "../components/MobileLayout";
 import { Button } from "../components/Button";
 import { FormLayout, RadioLayout, Radio } from "../components/FormLayout";
+import Input from "../components/Input";
+import styled from "styled-components";
+
+const DivAge = styled.div`
+    display: flex;
+justify-content: space-between;
+    margin: 20px 0 10px;
+`;
+
+const DivNumber = styled.div`
+    display: flex;
+justify-content: space-between;
+    margin: 10px 0 20px;
+`;
 
 export function TicketForm({ location, onTicket }) {
   const [sex, setSex] = useState("F");
@@ -33,22 +47,12 @@ export function TicketForm({ location, onTicket }) {
               Femme
             </Radio>
           </RadioLayout>
-          <div>
-            <label>Âge</label>
-            <input
-              type="number"
-              value={age}
-              onChange={evt => setAge(evt.target.value)}
-            />
-          </div>
-          <div>
-            <label>Mobile</label>
-            <input
-              type="phone"
-              value={phone}
-              onChange={evt => setPhone(evt.target.value)}
-            />
-          </div>
+          <DivAge>
+            <Input label="Âge" type="number" value={age} onChange={evt => setAge(evt.target.value)} />
+          </DivAge>
+          <DivNumber>
+            <Input label="Mobile" type="phone" value={phone} onChange={evt => setPhone(evt.target.value)} />
+          </DivNumber>
         </FormLayout>
         <p>
           En cliquant sur le bouton ci-dessous j’accepte les conditions
