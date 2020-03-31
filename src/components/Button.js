@@ -1,11 +1,11 @@
 import styled from "styled-components";
 
 export const Button = styled.button.attrs(props => ({
-    isDisabeled: props.isDisabeled || false
+    isDisabled: props.isDisabled || false
 }))`
   border: none;
-  background:  ${props => props.isDisabeled ? '#C2BCB4' :'#ffcc09'};
-  cursor: ${props => props.isDisabeled ? 'not-allowed' : 'pointer'};
+  background:  ${props => props.isDisabled ? '#C2BCB4' :'#ffcc09'};
+  cursor: ${props => props.isDisabled ? 'not-allowed' : 'pointer'};
   border-radius: 4px;
   font-family: Avenir;
   font-style: normal;

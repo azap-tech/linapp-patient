@@ -85,7 +85,7 @@ export function TicketForm({ location, onTicket }) {
           générales d’utilisation du service
         </p>
         <Button
-          isDisabeled={isInvalidAge || !isvalidPhone}
+          isDisabled={isInvalidAge || !isvalidPhone}
           onClick={(e) =>
             !isInvalidAge &&
             isvalidPhone &&
