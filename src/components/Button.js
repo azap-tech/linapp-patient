@@ -1,8 +1,11 @@
 import styled from "styled-components";
 
-export const Button = styled.button`
+export const Button = styled.button.attrs(props => ({
+    isDisabled: props.isDisabled || false
+}))`
   border: none;
-  background: #ffcc09;
+  background:  ${props => props.isDisabled ? '#C2BCB4' :'#ffcc09'};
+  cursor: ${props => props.isDisabled ? 'not-allowed' : 'pointer'};
   border-radius: 4px;
   font-family: Avenir;
   font-style: normal;
@@ -10,7 +13,6 @@ export const Button = styled.button`
   font-size: x-large;
   width: 90%;
   min-height: 3rem;
-
   color: #fffefe;
   margin-top: auto;
 `;
