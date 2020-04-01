@@ -1,16 +1,15 @@
 import React, { useEffect } from "react";
 import styled from "styled-components";
 import { useParams } from "react-router-dom";
-import { ReactComponent as TicketSVG } from "../assets/ticket.svg";
 import {
-  MobileLayout,
+  MobileContent,
   MobileHeader,
-  MobileContent
+  MobileLayout,
 } from "../components/MobileLayout";
-import { ButtonOutline } from "../components/Button";
 import { useDispatch, useSelector } from "react-redux";
 import { getTicket } from "../state/ClientTicket";
 import { getLocations } from "../state/Locations";
+import { ButtonOutline, ButtonCancel } from "../components/Button";
 
 const DateTimeLayout = styled.div`
   width: 22vh;
@@ -29,14 +28,14 @@ const DateDay = styled.div`
   font-style: normal;
   font-weight: 600;
   font-size: normal;
-  color: #055d88;
+  color: #fff;
 `;
 const DateHour = styled.div`
   font-family: Avenir Next;
   font-style: normal;
   font-weight: bold;
   font-size: x-large;
-  color: #055d88;
+  color: #fff;
 `;
 const DateTime = ({ day, hours }) => {
   return (
@@ -46,30 +45,74 @@ const DateTime = ({ day, hours }) => {
     </DateTimeLayout>
   );
 };
-const TicketTitle = styled.h2`
+
+const TicketTitleContainer = styled.div`
   width: 100%;
   display: flex;
-  flex-direction: row;
-  justify-content: flex-start;
-  align-items: flex-start;
+  justify-content: space-between;
+  align-items: center;
+  padding: 5px;
+  margin-bottom: 15px;
 `;
-const TicketTitleContent = styled.div`
-  flex: 1;
-  span {
-    font-size: small;
-    font-style: normal;
+
+const TicketTitle = styled.h2`
+  margin: 0;
+`;
+
+const TicketSubtitle = styled.span`
+  font-family: "Avenir";
+  font-size: 12px;
+  line-height: 18px;
+  color: rgba(4, 155, 229, 1);
+`;
+
+const TicketBodyContainer = styled.div`
+  position: relative;
+  display: flex;
+  flex-flow: column;
+  padding: 32px;
+  align-items: center;
+  background-color: #049be5;
+`;
+
+const TicketNumber = styled.div`
+  margin-top: 10px;
+  font-family: "Avenir";
+  font-size: 50px;
+  font-weight: 900;
+  color: #ffffff;
+`;
+
+const TicketBodyTitle = styled.h3`
+  font-family: "Avenir";
+  font-size: 18px;
+  font-weight: 900 !important;
+  color: #ffffff !important;
+  text-align: center;
+  line-height: 24px;
+`;
+
+const TicketParagraphe = styled.p`
+  color: #ffffff !important;
+  div {
+    margin: 0 20px;
   }
 `;
+
+const TicketButtonCancel = styled.div`
+  margin: 10px;
+`;
+
 export function TicketView() {
   const dispatch = useDispatch();
   let { id } = useParams();
-  const ticket = useSelector(state => {
+  const ticket = useSelector((state) => {
     const t = state.clientTicket;
     if (t === null) {
       return null;
     }
     const location =
-      state.locations && state.locations.find(l => t.locationId === l.id);
+      state.locations && state.locations.find((l) => t.locationId === l.id);
     return { ...t, location };
   });
 
@@ -78,6 +121,16 @@ export function TicketView() {
     dispatch(getTicket(id));
   }, [dispatch, id]);
 
+  const cancelTicket = () => {
+    fetch(`/api/v2/ticket/${ticket.id}/status`, {
+      method: "PATCH",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify("CANCELED"),
+    });
+  };
+
   if (!ticket || !ticket.location) {
     return <div>loading ...</div>;
   }
@@ -85,27 +138,36 @@ export function TicketView() {
     <MobileLayout>
       <MobileHeader />
       <MobileContent>
-        <TicketTitle>
-          <TicketSVG />
-          <TicketTitleContent>
-            <div>{ticket.location.name}</div>
-            <span>Adresse du centre</span>
-          </TicketTitleContent>
-          <div>#{ticket.id}</div>
-        </TicketTitle>
-        <h3>Date et heure de passage estimé :</h3>
-        <DateTime day="Lun 22/11" hours="13h22" />
-        <p>
-          Votre horaire de passage est succeptible de varier, il sera mis à jour
-          en temps réel
-        </p>
-        <p>
-          Vous serez prévenu par SMS quand vous devrez vous rendre sur place
-        </p>
-        <p>
-          Vous pouvez prévoir votre temps de trajet en cliquant sur l’itinéraire
-        </p>
-        <ButtonOutline>Voir l’itinéraire</ButtonOutline>
+        <TicketTitleContainer>
+          <div>
+            <TicketTitle>{ticket.location.name}</TicketTitle>
+            <TicketSubtitle>Adresse du centre</TicketSubtitle>
+          </div>
+          <div>
+            <ButtonOutline>itinéraire</ButtonOutline>
+          </div>
+        </TicketTitleContainer>
+        <TicketBodyContainer>
+          <TicketNumber>#{ticket.id}</TicketNumber>
+          <TicketBodyTitle>Date et heure de passage estimé :</TicketBodyTitle>
+          <DateTime day="Lun 22/11" hours="13h22" />
+          <TicketParagraphe>
+            <div>
+              Votre horaire de passage est succeptible de varier, il sera mis à
+              jour en temps réel
+            </div>
+          </TicketParagraphe>
+          <TicketParagraphe>
+            <div>
+              Vous serez prévenu par SMS quand vous devrez vous rendre sur place
+            </div>
+          </TicketParagraphe>
+          <TicketButtonCancel>
+            <ButtonCancel onClick={cancelTicket}>
+              Annuler le ticket
+            </ButtonCancel>
+          </TicketButtonCancel>
+        </TicketBodyContainer>
       </MobileContent>
     </MobileLayout>
   );
