@@ -73,6 +73,7 @@ const TicketBodyContainer = styled.div`
   padding: 32px;
   align-items: center;
   background-color: #049be5;
+  border-radius: 2%;
 `;
 
 const TicketNumber = styled.div`
