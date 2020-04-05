@@ -8,7 +8,7 @@ import { ReactComponent as DoctorSVG } from "../assets/doctor.svg";
 import {
   MobileLayout,
   MobileHeader,
-  MobileContent
+  MobileContent,
 } from "../components/MobileLayout";
 
 const LocationCardLayout = styled.div`
@@ -80,10 +80,13 @@ const LocationCard = ({ location, ...props }) => {
 
 export function Locations({ onLocation }) {
   const dispatch = useDispatch();
-  const locations = useSelector(state => state.locations);
+  const locations = useSelector((state) => state.locations);
 
   useEffect(() => {
-    dispatch(getLocations());
+    let id = setInterval(() => {
+      dispatch(getLocations());
+    }, 3000);
+    return () => clearInterval(id);
   }, [dispatch]);
   return (
     <MobileLayout>
@@ -94,12 +97,15 @@ export function Locations({ onLocation }) {
           Voici la liste des centres suceptibles de vous accueillir
         </h2>
         <input />
-        {(!locations || locations.length === 0) && (
-          <div>Network error please try later</div>
-        )}
+        {locations === null && <div>Network error please try later</div>}
+        {locations.length === 0 && <div>No locations found</div>}
         {locations &&
-          locations.map(l => (
-            <LocationCard location={l} onClick={() => onLocation(l)} />
+          locations.map((l) => (
+            <LocationCard
+              key={l.id}
+              location={l}
+              onClick={() => onLocation(l)}
+            />
           ))}
       </MobileContent>
     </MobileLayout>

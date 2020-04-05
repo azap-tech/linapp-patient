@@ -9,7 +9,7 @@ import { ReactComponent as DoctorSVG } from "../assets/doctor.svg";
 import {
   MobileLayout,
   MobileHeader,
-  MobileContent
+  MobileContent,
 } from "../components/MobileLayout";
 import { Button } from "../components/Button";
 import { FormLayout, Select } from "../components/FormLayout";
@@ -24,17 +24,13 @@ const DepartmentFormLayout = styled(FormLayout)`
 `;
 const DepartmentForm = () => {
   const dispatch = useDispatch();
-  const locations = useSelector(state => state.locations);
+  const locations = useSelector((state) => state.locations);
 
   useEffect(() => {
     dispatch(getLocations());
   }, [dispatch]);
-  if (
-    !locations ||
-    (locations.length === 0 && <div>Network error please try later</div>)
-  ) {
-    return <div> Error please try later </div>;
-  }
+  if (locations === null) return <div>Network error please try later</div>;
+  if (locations.length === 0) return <div>No locations found</div>;
 
   return (
     <DepartmentFormLayout>
@@ -64,7 +60,7 @@ export function Department({ onDepartment }) {
           consultation médicale
         </h1>
         <DepartmentForm />
-        <Button onClick={e => onDepartment("fixme")}>Valider</Button>
+        <Button onClick={(e) => onDepartment("fixme")}>Valider</Button>
       </MobileContent>
     </MobileLayout>
   );

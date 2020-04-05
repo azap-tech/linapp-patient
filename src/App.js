@@ -8,6 +8,8 @@ import { Locations } from "./pages/Locations";
 import { TicketForm } from "./pages/TicketForm";
 import { TicketValidation } from "./pages/TicketValidation";
 import { TicketView } from "./pages/TicketView";
+import { useEffect } from "react";
+import { connectSse } from "./state/sse";
 
 // check if value exist
 function RedirectIfUndefined({ value, to, children }) {
@@ -23,11 +25,17 @@ function App() {
   const [location, setLocation] = useState(null);
   const [ticket, setTicket] = useState(null);
   const history = useHistory();
+
+  useEffect(() => {
+    if (location && location.id) {
+      connectSse(dispatch, location.id);
+    }
+  }, [dispatch, location]);
   return (
     <Switch>
       <Route exact strict path="/">
         <Department
-          onDepartment={d => {
+          onDepartment={(d) => {
             setDepartment(d);
             history.push("/locations");
           }}
@@ -36,7 +44,7 @@ function App() {
       <Route path="/locations">
         <RedirectIfUndefined value={department} to="/">
           <Locations
-            onLocation={l => {
+            onLocation={(l) => {
               setLocation(l);
               history.push("/ticket-form");
             }}
@@ -47,8 +55,8 @@ function App() {
         <RedirectIfUndefined value={location} to="/locations">
           <TicketForm
             location={location}
-            onTicket={t => {
-              dispatch(newTicket({ location, ...t })).then(id => {
+            onTicket={(t) => {
+              dispatch(newTicket({ location, ...t })).then((id) => {
                 setTicket({ ...t, id });
                 history.push("/ticket-validation");
               });

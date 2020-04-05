@@ -10,6 +10,8 @@ import { useDispatch, useSelector } from "react-redux";
 import { getTicket } from "../state/ClientTicket";
 import { getLocations } from "../state/Locations";
 import { ButtonOutline, ButtonCancel } from "../components/Button";
+import { mockComponent } from "react-dom/test-utils";
+import moment from "moment";
 
 const DateTimeLayout = styled.div`
   width: 22vh;
@@ -36,8 +38,14 @@ const DateHour = styled.div`
   font-weight: bold;
   font-size: x-large;
   color: #fff;
+  text-align: center;
 `;
-const DateTime = ({ day, hours }) => {
+const DateTime = ({ minutes }) => {
+  console.log(minutes);
+
+  let time = moment().add(minutes, "minutes");
+  let day = time.format("MMMM Do");
+  let hours = time.format("h:mm a");
   return (
     <DateTimeLayout>
       <DateDay>{day}</DateDay>
@@ -95,7 +103,7 @@ const TicketBodyTitle = styled.h3`
 
 const TicketParagraphe = styled.p`
   color: #ffffff !important;
-  div {
+  span {
     margin: 0 20px;
   }
 `;
@@ -108,18 +116,22 @@ export function TicketView() {
   const dispatch = useDispatch();
   let { id } = useParams();
   const ticket = useSelector((state) => {
-    const t = state.clientTicket;
-    if (t === null) {
+    if (state.clientTicket === null) {
       return null;
     }
+    const { ticket, expectedIn, queuePosition, queueLen } = state.clientTicket;
     const location =
-      state.locations && state.locations.find((l) => t.locationId === l.id);
-    return { ...t, location };
+      state.locations &&
+      state.locations.find((l) => ticket.locationId === l.id);
+    return { ...ticket, expectedIn, queuePosition, queueLen, location };
   });
 
   useEffect(() => {
-    dispatch(getLocations());
-    dispatch(getTicket(id));
+    let i = setInterval(() => {
+      dispatch(getLocations());
+      dispatch(getTicket(id));
+    }, 3000);
+    return () => clearInterval(i);
   }, [dispatch, id]);
 
   const cancelTicket = () => {
@@ -151,17 +163,18 @@ export function TicketView() {
         <TicketBodyContainer>
           <TicketNumber>#{ticket.id}</TicketNumber>
           <TicketBodyTitle>Date et heure de passage estimé :</TicketBodyTitle>
-          <DateTime day="Lun 22/11" hours="13h22" />
+          <DateTime minutes={ticket.expectedIn} />
           <TicketParagraphe>
-            <div>
+            <span>
               Votre horaire de passage est succeptible de varier, il sera mis à
-              jour en temps réel
-            </div>
+              jour en temps réel votre position ({ticket.queuePosition}/
+              {ticket.queueLen})
+            </span>
           </TicketParagraphe>
           <TicketParagraphe>
-            <div>
+            <span>
               Vous serez prévenu par SMS quand vous devrez vous rendre sur place
-            </div>
+            </span>
           </TicketParagraphe>
           <TicketButtonCancel>
             <ButtonCancel onClick={cancelTicket}>
