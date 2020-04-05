@@ -6,8 +6,8 @@ const clientTicket = createSlice({
   initialState: null,
   name: "clientTicket",
   reducers: {
-    set: (state, action) => action.payload
-  }
+    set: (state, action) => action.payload,
+  },
 });
 
 export function newTicket({ location, age, sex, phone }) {
@@ -17,19 +17,19 @@ export function newTicket({ location, age, sex, phone }) {
     age,
     sex,
     phone,
-    pathology: ""
+    pathology: "",
   };
-  return dispatch => {
-    return fetch(`${api}/api/v2/ticket`, {
+  return (dispatch) => {
+    return fetch(`${api}/api/v2/ticket/new`, {
       method: "POST",
       headers: {
-        "Content-Type": "application/json"
+        "Content-Type": "application/json",
       },
-      body: JSON.stringify(ticketForm)
+      body: JSON.stringify(ticketForm),
     })
-      .then(res => res.json())
-      .then(res => Promise.resolve(res.id))
-      .catch(error => {
+      .then((res) => res.json())
+      .then((res) => Promise.resolve(res.id))
+      .catch((error) => {
         console.error(`new ticket action error : ${error}`);
         dispatch({ type: "connection-error", error });
         return Promise.reject(error);
@@ -38,11 +38,11 @@ export function newTicket({ location, age, sex, phone }) {
 }
 
 export function getTicket(id) {
-  return dispatch => {
+  return (dispatch) => {
     return fetch(`${api}/api/v2/ticket/${id}`)
-      .then(res => res.json())
-      .then(res => dispatch(clientTicket.actions.set(res)))
-      .catch(error => {
+      .then((res) => res.json())
+      .then((res) => dispatch(clientTicket.actions.set(res)))
+      .catch((error) => {
         console.error(`get ticket action error : ${error}`);
         dispatch(clientTicket.actions.set(null));
         dispatch({ type: "connection-error", error });
