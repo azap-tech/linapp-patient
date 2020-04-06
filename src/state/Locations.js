@@ -9,25 +9,25 @@ const locations = createSlice({
     update: (state, action) => {
       const location = action.payload;
       const id = location.id;
-      const idx = state.findIndex(t => t.id === id);
+      const idx = state.findIndex((t) => t.id === id);
       state[idx] = location;
     },
     sync: (state, action) => {
       return action.payload;
-    }
-  }
+    },
+  },
 });
 
 export function getLocations() {
-  return dispatch => {
-    dispatch(locations.actions.sync(null));
+  return (dispatch, getState) => {
+    const t = getState().locations;
+    dispatch(locations.actions.sync(t));
     fetch(`${api}/api/v2/location`)
-      .then(res => res.json())
-      .then(data => {
-        console.log(data);
+      .then((res) => res.json())
+      .then((data) => {
         dispatch(locations.actions.sync(data.locations));
       })
-      .catch(err => {
+      .catch((err) => {
         console.error(err);
         dispatch(locations.actions.sync([]));
       });

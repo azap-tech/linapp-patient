@@ -15,8 +15,8 @@ const VALID_PHONE_REGEX = /^(?:(?:\+|00)33|0)\s*[1-9](?:[\s.-]*\d{2}){4}$/g;
 
 export function TicketForm({ location, onTicket }) {
   const [sex, setSex] = useState("F");
-  const [age, setAge] = useState(null);
-  const [phone, setPhone] = useState(null);
+  const [age, setAge] = useState("");
+  const [phone, setPhone] = useState("");
   const [isvalidPhone, setIsvalidPhone] = useState(false);
   const [isInvalidPhone, setIsInvalidPhone] = useState(false);
   const [isInvalidAge, setInvalidAge] = useState(false);

@@ -7,6 +7,13 @@ const clientTicket = createSlice({
   name: "clientTicket",
   reducers: {
     set: (state, action) => action.payload,
+    sync: (state, action) => {
+      if (state.id === action.payload) {
+        return action.payload;
+      } else {
+        return state;
+      }
+    },
   },
 });
 
@@ -49,6 +56,9 @@ export function getTicket(id) {
         return Promise.reject(error);
       });
   };
+}
+export function ticket_sync(t) {
+  return clientTicket.actions.sync(t);
 }
 
 export const reducer = clientTicket.reducer;
