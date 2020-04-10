@@ -17,10 +17,10 @@ const clientTicket = createSlice({
   },
 });
 
-export function newTicket({ location, age, sex, phone }) {
+export function newTicket({ location, age, sex, phone, name }) {
   const ticketForm = {
     locationId: location.id,
-    name: "",
+    name: name,
     age,
     sex,
     phone,

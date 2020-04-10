@@ -16,10 +16,12 @@ const VALID_PHONE_REGEX = /^(?:(?:\+|00)33|0)\s*[1-9](?:[\s.-]*\d{2}){4}$/g;
 export function TicketForm({ location, onTicket }) {
   const [sex, setSex] = useState("F");
   const [age, setAge] = useState("");
+  const [name, setName] = useState("");
   const [phone, setPhone] = useState("");
   const [isvalidPhone, setIsvalidPhone] = useState(false);
   const [isInvalidPhone, setIsInvalidPhone] = useState(false);
   const [isInvalidAge, setInvalidAge] = useState(false);
+  const [isInvalidName, setInvalidName] = useState(false);
 
   const onPhoneChange = (e) => {
     const phoneNumber = e.target.value;
@@ -42,6 +44,16 @@ export function TicketForm({ location, onTicket }) {
       setInvalidAge(false);
     } else {
       setInvalidAge(true);
+    }
+  };
+
+  const onNameChange = (e) => {
+    setName(e.target.value);
+    const name = e.target.value;
+    if (name.length === 0) {
+      setInvalidName(true);
+    } else {
+      setInvalidName(false);
     }
   };
 
@@ -72,6 +84,14 @@ export function TicketForm({ location, onTicket }) {
             errorMsg="Veuillez renseigner un âge valide"
           />
           <Input
+            label="Nom"
+            type="text"
+            value={name}
+            onChange={onNameChange}
+            isInvalid={isInvalidName}
+            errorMsg="Veuillez renseigner un nom"
+          />
+          <Input
             label="Mobile"
             type="phone"
             value={phone}
@@ -89,7 +109,7 @@ export function TicketForm({ location, onTicket }) {
           onClick={(e) =>
             !isInvalidAge &&
             isvalidPhone &&
-            onTicket({ sex, age: parseInt(age), phone })
+            onTicket({ sex, age: parseInt(age), phone, name })
           }
         >
           Valider
