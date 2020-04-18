@@ -2,7 +2,7 @@ import React from "react";
 import styled from "styled-components";
 import { ReactComponent as InfoSVG } from "../assets/info.svg";
 import { ReactComponent as BurgerSVG } from "../assets/burger.svg";
-import logo from "../assets/logo.png";
+import logo from "../assets/logo.svg";
 
 const Logo = styled.img.attrs(props => ({ src: logo }))``;
 
