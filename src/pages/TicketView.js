@@ -88,7 +88,16 @@ const TicketNumber = styled.div`
   margin-top: 20px;
   margin-bottom: 20px;
   font-family: "Avenir";
-  font-size: 48px;
+  font-size: 50px;
+  font-weight: 900;
+  color: #ffffff;
+`;
+
+const TicketHead = styled.div`
+  margin-top: 20px;
+  margin-bottom: 20px;
+  font-family: "Avenir";
+  font-size: 2.5em;
   font-weight: 900;
   color: #ffffff;
 `;
@@ -198,7 +207,7 @@ export function TicketView({confirmation}) {
         </TicketBodyHeaderContainer>
         <TicketBodyContainer confirmation={confirmation}>
           {confirmation ? 
-          <TicketNumber>C’est à vous !</TicketNumber> :
+          <TicketHead>C’est à vous !</TicketHead> :
           <TicketNumber>#{ticket.id}</TicketNumber>
           }
           <DotLine/>
