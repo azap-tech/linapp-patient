@@ -11,6 +11,8 @@ import { getTicket } from "../state/ClientTicket";
 import { getLocations } from "../state/Locations";
 import { ButtonOutline, ButtonCancel } from "../components/Button";
 import { mockComponent } from "react-dom/test-utils";
+import { ReactComponent as SmsSVG } from "../assets/smsWhite.svg";
+import { ReactComponent as TimeSVG } from "../assets/time.svg";
 import moment from "moment";
 
 const DateTimeLayout = styled.div`
@@ -41,8 +43,6 @@ const DateHour = styled.div`
   text-align: center;
 `;
 const DateTime = ({ minutes }) => {
-  console.log(minutes);
-
   let time = moment().add(minutes, "minutes");
   let day = time.format("MMMM Do");
   let hours = time.format("h:mm a");
@@ -80,14 +80,15 @@ const TicketBodyContainer = styled.div`
   flex-flow: column;
   padding: 32px;
   align-items: center;
-  background-color: #049be5;
+  background-color: ${props => props.confirmation ? "#2EA64F" : "#049be5"};
   border-radius: 2%;
 `;
 
 const TicketNumber = styled.div`
-  margin-top: 10px;
+  margin-top: 20px;
+  margin-bottom: 20px;
   font-family: "Avenir";
-  font-size: 50px;
+  font-size: 48px;
   font-weight: 900;
   color: #ffffff;
 `;
@@ -108,11 +109,41 @@ const TicketParagraphe = styled.p`
   }
 `;
 
+const DotLine = styled.div`
+  border-bottom: 1px dotted white;
+  width: 100%;
+`;
+
+const TicketBodyHeaderContainer = styled.div`
+  display: flex;
+  flex-direction: row;
+  justify-content: stretch;
+  align-items: stretch;
+  width: 100%;
+  height: 20px;
+  position: relative;
+  margin-bottom: -20px;
+  z-index: 2;
+  background-color: transparent;
+`;
+
 const TicketButtonCancel = styled.div`
   margin: 10px;
 `;
 
-export function TicketView() {
+const TicketBodyHeaderPlain = styled.div`
+  flex: 1;
+  border-radius: 100% 100% 0 0;
+  background-color: ${props => props.confirmation ? "#2EA64F" : "#049be5"};
+`;
+
+const TicketBodyHeaderEmpty = styled.div`
+  flex: 1;
+  background-color: white;
+  border-radius: 0 0 15% 15%;
+`;
+
+export function TicketView({confirmation}) {
   const dispatch = useDispatch();
   let { id } = useParams();
   const ticket = useSelector((state) => {
@@ -154,24 +185,37 @@ export function TicketView() {
         <TicketTitleContainer>
           <div>
             <TicketTitle>{ticket.location.name}</TicketTitle>
-            <TicketSubtitle>Adresse du centre</TicketSubtitle>
+            <TicketSubtitle>{ticket.location.address + ' ' + ticket.location.zipCode + ' '  + ticket.location.city}</TicketSubtitle>
           </div>
           <div>
-            <ButtonOutline>itinéraire</ButtonOutline>
+            <ButtonOutline><a href={"geo:?q=" + ticket.location.address.split(' ').join('+') + '+' + ticket.location.zipCode + '+'  + ticket.location.city}>itinéraire</a></ButtonOutline>
           </div>
         </TicketTitleContainer>
-        <TicketBodyContainer>
+        <TicketBodyHeaderContainer confirmation={confirmation}>
+            <TicketBodyHeaderPlain confirmation={confirmation}/>
+            <TicketBodyHeaderEmpty confirmation={confirmation}/>
+            <TicketBodyHeaderPlain confirmation={confirmation}/>
+        </TicketBodyHeaderContainer>
+        <TicketBodyContainer confirmation={confirmation}>
+          {confirmation ? 
+          <TicketNumber>C’est à vous !</TicketNumber> :
           <TicketNumber>#{ticket.id}</TicketNumber>
-          <TicketBodyTitle>Date et heure de passage estimé :</TicketBodyTitle>
-          <DateTime minutes={ticket.expectedIn} />
+          }
+          <DotLine/>
+          <TicketBodyTitle>{confirmation ? 'Merci d’avoir patienté' : 'Date et heure de passage estimé :'}</TicketBodyTitle>
+          {confirmation ? 
+          <TicketNumber>#{ticket.id}</TicketNumber> :
+          <DateTime minutes={ticket.expectedIn} /> 
+          }
           <TicketParagraphe>
+            <SmsSVG/>
             <span>
               Votre horaire de passage est succeptible de varier, il sera mis à
-              jour en temps réel votre position ({ticket.queuePosition}/
-              {ticket.queueLen})
+              jour en temps réel.
             </span>
           </TicketParagraphe>
           <TicketParagraphe>
+            <TimeSVG/>
             <span>
               Vous serez prévenu par SMS quand vous devrez vous rendre sur place
             </span>

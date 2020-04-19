@@ -75,6 +75,9 @@ function App() {
       <Route path="/ticket-view/:id">
         <TicketView />
       </Route>
+      <Route path="/ticket-confirmation/:id">
+        <TicketView confirmation={true} />
+      </Route>
     </Switch>
   );
 }
