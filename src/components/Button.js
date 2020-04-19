@@ -36,6 +36,11 @@ export const ButtonOutline = styled(Button)`
   border-radius: 4px;
   color: #055d88;
   padding: 0 20px;
+  a {
+    color: #055d88;
+    background-color: transparent;
+    text-decoration: none;
+  }
 `;
 
 export const LinkButton = styled.div`
