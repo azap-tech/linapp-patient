@@ -97,7 +97,8 @@ const TicketHead = styled.div`
   margin-top: 20px;
   margin-bottom: 20px;
   font-family: "Avenir";
-  font-size: 2.5em;
+  font-size: 1.5em;
+  text-align: center;
   font-weight: 900;
   color: #ffffff;
 `;
