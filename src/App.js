@@ -26,11 +26,13 @@ function App() {
   const [ticket, setTicket] = useState(null);
   const history = useHistory();
 
+  /*
   useEffect(() => {
     if (location && location.id) {
       connectSse(dispatch, location.id);
     }
   }, [dispatch, location]);
+  */
   return (
     <Switch>
       <Route exact strict path="/">
