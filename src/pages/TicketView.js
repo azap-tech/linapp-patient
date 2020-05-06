@@ -14,6 +14,8 @@ import { mockComponent } from "react-dom/test-utils";
 import { ReactComponent as SmsSVG } from "../assets/smsWhite.svg";
 import { ReactComponent as TimeSVG } from "../assets/time.svg";
 import moment from "moment";
+import "moment/locale/fr";
+moment.locale("fr");
 
 const DateTimeLayout = styled.div`
   width: 22vh;
@@ -45,7 +47,7 @@ const DateHour = styled.div`
 const DateTime = ({ minutes }) => {
   let time = moment().add(minutes, "minutes");
   let day = time.format("MMMM Do");
-  let hours = time.format("h:mm a");
+  let hours = time.format("HH:mm");
   return (
     <DateTimeLayout>
       <DateDay>{day}</DateDay>
@@ -80,7 +82,7 @@ const TicketBodyContainer = styled.div`
   flex-flow: column;
   padding: 32px;
   align-items: center;
-  background-color: ${props => props.confirmation ? "#2EA64F" : "#049be5"};
+  background-color: ${(props) => (props.confirmation ? "#2EA64F" : "#049be5")};
   border-radius: 2%;
 `;
 
@@ -144,7 +146,7 @@ const TicketButtonCancel = styled.div`
 const TicketBodyHeaderPlain = styled.div`
   flex: 1;
   border-radius: 100% 100% 0 0;
-  background-color: ${props => props.confirmation ? "#2EA64F" : "#049be5"};
+  background-color: ${(props) => (props.confirmation ? "#2EA64F" : "#049be5")};
 `;
 
 const TicketBodyHeaderEmpty = styled.div`
@@ -153,7 +155,7 @@ const TicketBodyHeaderEmpty = styled.div`
   border-radius: 0 0 15% 15%;
 `;
 
-export function TicketView({confirmation}) {
+export function TicketView({ confirmation }) {
   const dispatch = useDispatch();
   let { id } = useParams();
   const ticket = useSelector((state) => {
@@ -195,37 +197,62 @@ export function TicketView({confirmation}) {
         <TicketTitleContainer>
           <div>
             <TicketTitle>{ticket.location.name}</TicketTitle>
-            <TicketSubtitle>{ticket.location.address + ' ' + ticket.location.zipCode + ' '  + ticket.location.city}</TicketSubtitle>
+            <TicketSubtitle>
+              {ticket.location.address +
+                " " +
+                ticket.location.zipCode +
+                " " +
+                ticket.location.city}
+            </TicketSubtitle>
           </div>
           <div>
-            <ButtonOutline><a href={"geo:?q=" + ticket.location.address.split(' ').join('+') + '+' + ticket.location.zipCode + '+'  + ticket.location.city}>itinéraire</a></ButtonOutline>
+            <ButtonOutline>
+              <a
+                href={
+                  "geo:?q=" +
+                  ticket.location.address.split(" ").join("+") +
+                  "+" +
+                  ticket.location.zipCode +
+                  "+" +
+                  ticket.location.city
+                }
+              >
+                itinéraire
+              </a>
+            </ButtonOutline>
           </div>
         </TicketTitleContainer>
         <TicketBodyHeaderContainer confirmation={confirmation}>
-            <TicketBodyHeaderPlain confirmation={confirmation}/>
-            <TicketBodyHeaderEmpty confirmation={confirmation}/>
-            <TicketBodyHeaderPlain confirmation={confirmation}/>
+          <TicketBodyHeaderPlain confirmation={confirmation} />
+          <TicketBodyHeaderEmpty confirmation={confirmation} />
+          <TicketBodyHeaderPlain confirmation={confirmation} />
         </TicketBodyHeaderContainer>
         <TicketBodyContainer confirmation={confirmation}>
-          {confirmation ? 
-          <TicketHead>C’est à vous !</TicketHead> :
-          <TicketNumber>#{ticket.id}</TicketNumber>
-          }
-          <DotLine/>
-          <TicketBodyTitle>{confirmation ? 'Merci d’avoir patienté' : 'Date et heure de passage estimé :'}</TicketBodyTitle>
-          {confirmation ? 
-          <TicketNumber>#{ticket.id}</TicketNumber> :
-          <DateTime minutes={ticket.expectedIn} /> 
-          }
+          {confirmation ? (
+            <TicketHead>C’est à vous !</TicketHead>
+          ) : (
+            <TicketNumber>#{ticket.id}</TicketNumber>
+          )}
+          <DotLine />
+          <TicketBodyTitle>
+            {confirmation
+              ? "Merci d’avoir patienté"
+              : "Date et heure de passage estimé :"}
+          </TicketBodyTitle>
+          {confirmation ? (
+            <TicketNumber>#{ticket.id}</TicketNumber>
+          ) : (
+            <DateTime minutes={ticket.expectedIn} />
+          )}
           <TicketParagraphe>
-            <SmsSVG/>
+            <SmsSVG />
             <span>
               Votre horaire de passage est succeptible de varier, il sera mis à
               jour en temps réel.
             </span>
           </TicketParagraphe>
           <TicketParagraphe>
-            <TimeSVG/>
+            <TimeSVG />
             <span>
               Vous serez prévenu par SMS quand vous devrez vous rendre sur place
             </span>

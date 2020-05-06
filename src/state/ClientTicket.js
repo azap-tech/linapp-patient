@@ -26,6 +26,7 @@ export function newTicket({ location, age, sex, phone, name }) {
     phone,
     pathology: "",
   };
+
   return (dispatch) => {
     return fetch(`${api}/api/v2/ticket/new`, {
       method: "POST",
