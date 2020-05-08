@@ -4,7 +4,7 @@ import { ReactComponent as InfoSVG } from "../assets/info.svg";
 import { ReactComponent as BurgerSVG } from "../assets/burger.svg";
 import logo from "../assets/logo.svg";
 
-const Logo = styled.img.attrs(props => ({ src: logo }))``;
+const Logo = styled.img.attrs((props) => ({ src: logo }))``;
 
 export const MobileLayout = styled.div`
   display: flex;
@@ -28,9 +28,7 @@ const MobileHeaderLayout = styled.div`
 export const MobileHeader = () => {
   return (
     <MobileHeaderLayout>
-      <BurgerSVG />
       <Logo />
-      <InfoSVG />
     </MobileHeaderLayout>
   );
 };

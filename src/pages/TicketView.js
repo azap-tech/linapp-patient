@@ -46,7 +46,7 @@ const DateHour = styled.div`
 `;
 const DateTime = ({ minutes }) => {
   let time = moment().add(minutes, "minutes");
-  let day = time.format("MMMM Do");
+  let day = time.format("Do  MMMM");
   let hours = time.format("HH:mm");
   return (
     <DateTimeLayout>
@@ -170,10 +170,13 @@ export function TicketView({ confirmation }) {
   });
 
   useEffect(() => {
-    let i = setInterval((() => {
-      dispatch(getLocations());
-      dispatch(getTicket(id));
-    })(), 60000);
+    let i = setInterval(
+      (() => {
+        dispatch(getLocations());
+        dispatch(getTicket(id));
+      })(),
+      60000
+    );
     return () => clearInterval(i);
   }, [dispatch, id]);
 
