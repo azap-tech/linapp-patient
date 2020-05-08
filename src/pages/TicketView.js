@@ -155,6 +155,48 @@ const TicketBodyHeaderEmpty = styled.div`
   border-radius: 0 0 15% 15%;
 `;
 
+const Title = styled.h2`
+  font-family: Avenir;
+  font-style: normal;
+  font-weight: 900;
+  font-size: 18px;
+  line-height: 130%;
+  color: #055d88;
+`;
+
+const TicketList = styled.div`
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  align-items: center;
+  justify-content: center;
+  width: 90%;
+`;
+const TicketLayout = styled.div`
+  flex: 1;
+  width: 100%;
+  margin-bottom: ${(props) => (props.active ? "2rem" : "1rem")};
+  background: ${(props) =>
+    props.active ? "#2EA64F" : props.selected ? "#049BE5" : "#eaf4fb"};
+  color: ${(props) => (props.active || props.selected ? "#FFF" : "#049BE5")};
+  border-radius: 8px;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  padding: 1rem;
+`;
+
+const Ticket = ({ position, active, selected }) => {
+  return (
+    <TicketLayout active={active} selected={selected}>
+      {selected && <div>Votre ticket</div>}
+      {active && <div>En cours</div>}
+      {!selected && !active && <div></div>}
+      <div>{position}</div>
+    </TicketLayout>
+  );
+};
+
 export function TicketView({ confirmation }) {
   const dispatch = useDispatch();
   let { id } = useParams();
@@ -189,6 +231,19 @@ export function TicketView({ confirmation }) {
       body: JSON.stringify("CANCELED"),
     });
   };
+
+  function createTicketList(queuePosition, queueLen) {
+    let res = [];
+    res.push(<Ticket key="0" position={0} active />);
+    for (var i = 1; i < queuePosition; i++) {
+      res.push(<Ticket key={i} position={i} />);
+    }
+    res.push(<Ticket key={queuePosition} position={queuePosition} selected />);
+    for (var i = queuePosition + 1; i < queueLen; i++) {
+      res.push(<Ticket key={i} position={i} />);
+    }
+    return res;
+  }
 
   if (!ticket || !ticket.location) {
     return <div>loading ...</div>;
@@ -266,6 +321,10 @@ export function TicketView({ confirmation }) {
             </ButtonCancel>
           </TicketButtonCancel>
         </TicketBodyContainer>
+        <Title>Votre position dans la file</Title>
+        <TicketList>
+          {createTicketList(ticket.queuePosition, ticket.queueLen)}
+        </TicketList>
       </MobileContent>
     </MobileLayout>
   );
