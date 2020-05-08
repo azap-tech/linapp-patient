@@ -170,10 +170,10 @@ export function TicketView({ confirmation }) {
   });
 
   useEffect(() => {
-    let i = setInterval(() => {
+    let i = setInterval((() => {
       dispatch(getLocations());
       dispatch(getTicket(id));
-    }, 3000);
+    })(), 60000);
     return () => clearInterval(i);
   }, [dispatch, id]);
 

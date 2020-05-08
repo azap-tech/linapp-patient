@@ -35,45 +35,6 @@ function App() {
   */
   return (
     <Switch>
-      <Route exact strict path="/">
-        <Department
-          onDepartment={(d) => {
-            setDepartment(d);
-            history.push("/locations");
-          }}
-        />
-      </Route>
-      <Route path="/locations">
-        <RedirectIfUndefined value={department} to="/">
-          <Locations
-            onLocation={(l) => {
-              setLocation(l);
-              history.push("/ticket-form");
-            }}
-          />
-        </RedirectIfUndefined>
-      </Route>
-      <Route path="/ticket-form">
-        <RedirectIfUndefined value={location} to="/locations">
-          <TicketForm
-            location={location}
-            onTicket={(t) => {
-              dispatch(newTicket({ location, ...t })).then((id) => {
-                setTicket({ ...t, id });
-                history.push("/ticket-validation");
-              });
-            }}
-          />
-        </RedirectIfUndefined>
-      </Route>
-      <Route path="/ticket-validation">
-        <RedirectIfUndefined value={ticket} to="/locations">
-          <TicketValidation
-            ticket={ticket}
-            onValidation={() => history.push(`/ticket-view/${ticket.id}`)}
-          />
-        </RedirectIfUndefined>
-      </Route>
       <Route path="/ticket-view/:id">
         <TicketView />
       </Route>
