@@ -40,13 +40,13 @@ const DateHour = styled.div`
   font-family: Avenir Next;
   font-style: normal;
   font-weight: bold;
-  font-size: x-large;
+  font-size: xx-large;
   color: #fff;
   text-align: center;
 `;
 const DateTime = ({ minutes }) => {
   let time = moment().add(minutes, "minutes");
-  let day = time.format("Do  MMMM");
+  let day = time.format("ddd DD/MM");
   let hours = time.format("HH:mm");
   return (
     <DateTimeLayout>
@@ -84,6 +84,8 @@ const TicketBodyContainer = styled.div`
   align-items: center;
   background-color: ${(props) => (props.confirmation ? "#2EA64F" : "#049be5")};
   border-radius: 2%;
+  min-width: 90vw;
+  min-height: 50vh;
 `;
 
 const TicketNumber = styled.div`
@@ -197,6 +199,23 @@ const Ticket = ({ position, active, selected }) => {
   );
 };
 
+const EmptyTicketView = () => {
+  return (
+    <MobileLayout>
+      <MobileHeader />
+      <MobileContent>
+        <TicketTitleContainer />
+        <TicketBodyHeaderContainer>
+          <TicketBodyHeaderPlain />
+          <TicketBodyHeaderEmpty />
+          <TicketBodyHeaderPlain />
+        </TicketBodyHeaderContainer>
+        <TicketBodyContainer></TicketBodyContainer>
+      </MobileContent>
+    </MobileLayout>
+  );
+};
+
 export function TicketView({ confirmation }) {
   const dispatch = useDispatch();
   let { id } = useParams();
@@ -246,7 +265,7 @@ export function TicketView({ confirmation }) {
   }
 
   if (!ticket || !ticket.location) {
-    return <div>loading ...</div>;
+    return <EmptyTicketView />;
   }
   return (
     <MobileLayout>
