@@ -194,7 +194,7 @@ const Ticket = ({ position, active, selected }) => {
       {selected && <div>Votre ticket</div>}
       {active && <div>En cours</div>}
       {!selected && !active && <div></div>}
-      <div>{position}</div>
+      <div>n°{position}</div>
     </TicketLayout>
   );
 };
@@ -253,13 +253,11 @@ export function TicketView({ confirmation }) {
 
   function createTicketList(queuePosition, queueLen) {
     let res = [];
-    res.push(<Ticket key="0" position={0} active />);
-    for (var i = 1; i < queuePosition; i++) {
-      res.push(<Ticket key={i} position={i} />);
-    }
-    res.push(<Ticket key={queuePosition} position={queuePosition} selected />);
-    for (var i = queuePosition + 1; i < queueLen; i++) {
-      res.push(<Ticket key={i} position={i} />);
+    res.push(<Ticket key="0" position={queueLen[0]} active />);
+    for (var i = 1; i < queueLen.length; i++) {
+      res.push(
+        <Ticket key={i} position={queueLen[i]} selected={queuePosition === i} />
+      );
     }
     return res;
   }
