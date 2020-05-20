@@ -1,5 +1,5 @@
-import React, { useEffect } from "react";
-import styled from "styled-components";
+import React, { useEffect, useState } from "react";
+import styled, { keyframes } from "styled-components";
 import { useParams } from "react-router-dom";
 import {
   MobileContent,
@@ -16,6 +16,30 @@ import { ReactComponent as TimeSVG } from "../assets/time.svg";
 import moment from "moment";
 import "moment/locale/fr";
 moment.locale("fr");
+
+const circle = keyframes`
+  0%{
+    transform:rotate(0deg)
+              translate(-75px)
+              rotate(0deg);
+  
+  }
+  100%{
+    transform:rotate(360deg)
+              translate(-75px)
+              rotate(-360deg);
+  }
+`;
+
+const Spinner = styled.div`
+  width:12px;
+  height:12px;
+  background:white;
+  border-radius:50%;
+  position:absolute;
+  overflow:hidden;
+  animation: ${circle} 10s linear infinite;
+`;
 
 const DateTimeLayout = styled.div`
   width: 22vh;
@@ -35,6 +59,7 @@ const DateDay = styled.div`
   font-weight: 600;
   font-size: normal;
   color: #fff;
+  z-index: 1;
 `;
 const DateHour = styled.div`
   font-family: Avenir Next;
@@ -43,6 +68,7 @@ const DateHour = styled.div`
   font-size: xx-large;
   color: #fff;
   text-align: center;
+  z-index: 1;
 `;
 const DateTime = ({ minutes }) => {
   let time = moment().add(minutes, "minutes");
@@ -50,6 +76,7 @@ const DateTime = ({ minutes }) => {
   let hours = time.format("HH:mm");
   return (
     <DateTimeLayout>
+      <Spinner/>
       <DateDay>{day}</DateDay>
       <DateHour>{hours}</DateHour>
     </DateTimeLayout>
@@ -230,16 +257,19 @@ export function TicketView({ confirmation }) {
     return { ...ticket, expectedIn, queuePosition, queueLen, location };
   });
 
+  const [time, setTime] = useState(Date.now());
+
   useEffect(() => {
-    let i = setInterval(
-      (() => {
-        dispatch(getLocations());
-        dispatch(getTicket(id));
-      })(),
-      60000
-    );
-    return () => clearInterval(i);
-  }, [dispatch, id]);
+    dispatch(getLocations());
+    dispatch(getTicket(id));
+  }, [dispatch, id, time]);
+
+  useEffect(() => {
+    const interval = setInterval(() => setTime(Date.now()), 60000);
+    return () => {
+      clearInterval(interval);
+    };
+  }, []);
 
   const cancelTicket = () => {
     fetch(`/api/v2/ticket/${ticket.id}/status`, {
